@@ -1,0 +1,13 @@
+.container_banner {
+     height: 22vh;
+     width: 100%;
+     overflow: hidden;
+}
+.container_banner .card_slider {
+     height: 22vh;
+     width: 100%;
+}
+.container_banner .card_slider .banner {
+     height: 100%;
+     width: 100%;
+}

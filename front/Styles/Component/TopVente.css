@@ -1,0 +1,86 @@
+.top_vente .vente_produit {
+     margin: 0.8em;
+}
+.top_vente .titre {
+     margin: 1em;
+}
+.top_vente .titre p {
+     font-weight: bold;
+     font-size: 1.1em;
+     text-transform: uppercase;
+}
+.card_produit {
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+     height: 32vh;
+     width: 100%;
+     border-radius: 4px;
+}
+.card_produit .container_header {
+     height: 68%;
+}
+.card_produit .container_header .favoris {
+     position: absolute;
+     top: 0.5em;
+     border-radius: 50%;
+     display: flex;
+     padding: 0.2rem;
+     font-size: 0.9em;
+     background: white;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+     right: 0.8em;
+}
+.card_produit .container_header .favoris.active {
+     background: gray;
+     color: white;
+}
+.card_produit .container_header .container_image {
+     height: 100%;
+     width: 100%;
+     overflow: hidden;
+     text-decoration: none;
+}
+.card_produit .container_header .container_image .produit {
+     width: 100%;
+     border-radius: 4px;
+     height: 100%;
+}
+.card_produit .container_detail {
+     height: 35%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+
+}
+.card_produit .container_detail .name_product {
+     margin: 0.5em;
+     text-decoration: none;
+}
+.card_produit .container_detail .name_product p {
+     font-size: 0.8em;
+     color: black;
+}
+.card_produit .container_detail .price_cart {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 0.5em;
+}
+.card_produit .container_detail .price_cart .price {
+     color: #930207;
+     font-weight: bold;
+     font-size: 0.9rem;
+     text-decoration: none;
+}
+.card_produit .container_detail .price_cart div {
+     font-size: 1em;
+     cursor: pointer;
+     padding: 0.2rem;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: black;
+     color: white;
+     border-radius: 3px;
+}

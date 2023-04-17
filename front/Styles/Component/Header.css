@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800&display=swap');
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
+}
+header {
+     background: #f6f6f6;
+     height: 8vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+header .container_header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     width: 97%;
+}
+header .container_header .menu {
+     width: 10%;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 2.2em;
+     color: black;
+}
+header .container_header .logo_div {
+     width: 22%;
+     height: 7vh;
+}
+header .container_header .logo_div .logo {
+     width: 100%;
+     height: 100%;
+}
+header .container_header .notif {
+     width: 10%;
+     font-size: 1.7em;
+     display: flex;
+     cursor: pointer;
+     align-items: center;
+     justify-content: center;
+}
+header .container_header .notif div {
+     position: absolute;
+     padding: 0.2em 0.35em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+     font-size: 0.3em;
+     top: 1.5em;
+     background: red;
+     color: white;
+     right: 0.9em;
+}

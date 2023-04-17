@@ -1,0 +1,21 @@
+.container_produits .head_produit {
+     display: flex;
+     justify-content: space-between;
+     margin: 0 1em;
+     align-items: center;
+     height: 9vh;
+     /* box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px; */
+}
+.container_produits .head_produit .prod {
+     text-transform: uppercase;
+     font-weight: bold;
+     font-size: 1.2em;
+}
+.container_produits .head_produit .voirplus {
+     text-decoration: none;
+     color: white;
+     border: 1px solid;
+     padding: 0.3em 0.9em;
+     background: #034917;
+     border-radius: 4px;
+}

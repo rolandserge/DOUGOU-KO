@@ -1,0 +1,59 @@
+.nav_unique {
+     display: flex;
+     height: 8vh;
+     position: fixed;
+     width: 100%;
+     top: 0;
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+     justify-content: space-around;
+     align-items: center;
+     z-index: 100;
+     background: white;
+}
+.nav_unique .detail_nav {
+     width: 80%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
+.nav_unique .detail_nav .retour {
+     width: 10%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 2.2em;
+     text-decoration: none;
+     color: black;
+}
+.nav_unique .detail_nav .titre {
+     width: 85%;
+}
+.nav_unique .detail_panier {
+     height: 4vh;
+     text-decoration: none;
+}
+.nav_unique .detail_panier .panier {
+     
+     justify-content: center;
+     align-items: center;
+     display: flex;
+     color: black;
+     font-size: 1.5em;
+}
+.nav_unique .detail_panier .nb_items {
+     position: relative;
+     top: -1em;
+     right: -1em;
+     display: flex;
+     justify-content: center;
+     background: #034917;
+     color: white;
+     align-items: center;
+     width: 80%;
+     border-radius: 50%;
+     padding:  0;
+     font-size: 0.8em;
+     
+
+     font-weight: bold;
+}

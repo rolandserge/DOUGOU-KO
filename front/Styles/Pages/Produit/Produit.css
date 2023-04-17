@@ -1,0 +1,110 @@
+.produits_pages {
+
+}
+.produits_pages .categories_all {
+     margin: 0 0.5em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding-top: 5em;
+     height: 18vh;
+}
+.produits_pages .categories_all button {
+     border: 1px solid;
+     border-radius: 50px;
+     padding: 0.5em 0;
+     width: 100%;
+     cursor: pointer;
+     background: white;
+}
+.produits_pages .categories_all .active {
+     background: green;
+     border: none;
+     color: white;
+}
+.produit_all {
+     display: flex;
+     flex-wrap: wrap;
+     margin: 0 0.2em;
+     justify-content: space-around;
+}
+
+
+/* card style code*/
+.card_produit_all {
+     height: 32vh;
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+     width: 47%;
+     border-radius: 4px;
+     margin: 0.5em 0;
+}
+.card_produit_all .container_header {
+     height: 68%;
+}
+.card_produit_all .container_header .favoris {
+     position: relative;
+     top: -12em;
+     /* z-index: 10; */
+     border-radius: 50%;
+     display: flex;
+     width: 12.5%;
+     height: 2.8vh;
+     font-size: 0.9em;
+     background: grey;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+     left: 10.5em;
+}
+.card_produit_all .container_header .favoris.active {
+     background: #930207;
+     color: white;
+}
+.card_produit_all .container_header .container_image {
+     height: 100%;
+     width: 100%;
+}
+.card_produit_all .container_header .container_image .produit {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+}
+.card_produit_all .container_detail {
+     height: 35%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+
+}
+.card_produit_all .container_detail .name_product {
+     margin: 0.5em 0.5em 0 0.5em;
+     text-decoration: none;
+     color: black;
+}
+.card_produit_all .container_detail .name_product p {
+     font-size: 0.8em;
+     color: black;
+}
+.card_produit_all .container_detail .price_cart {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 0 0.5em 0.8em 0.5em;
+}
+.card_produit_all .container_detail .price_cart .price {
+     color: #930207;
+     font-weight: bold;
+     text-decoration: none;
+     font-size: 0.9rem;
+}
+.card_produit_all .container_detail .price_cart div {
+     font-size: 1em;
+     cursor: pointer;
+     padding: 0.2rem;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: black;
+     color: white;
+     border-radius: 3px;
+}

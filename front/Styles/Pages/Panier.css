@@ -1,0 +1,149 @@
+.container_panier {
+     min-height: 100vh;
+     padding-top: 4.5em;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier {
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+     margin: 0.5em;
+     display: flex;
+     justify-content: space-around;
+     padding: 0.2em;
+     height: 12vh;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .image_produit {
+     width: 23%;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .image_produit .image {
+     height: 100%;
+     width: 100%;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .detail_div {
+     width: 72%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .detail_div .name_produit {
+     font-size: 0.8em;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .detail_div .price {
+     font-weight: bold;
+     font-size: 0.7em;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .detail_div .action_div {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .detail_div .action_div .action_quantite {
+     width: 30%;
+     display: flex;
+     justify-content: space-between;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .detail_div .action_div .action_quantite button {
+     padding: 0em 0.5em;
+     font-size: 0.8em;
+     height: 2.8vh;
+     cursor: pointer;
+     border-radius: 3px;
+     background: white;
+     border: 1px solid;
+}
+.container_panier .contenu_panier .cards_paniers .card_panier .detail_div .action_div .delete_button {
+     font-size: 1.5em;
+     cursor: pointer;
+     color: #930207;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+
+/* Totaux produit */
+.container_panier .contenu_panier .totaux_card {
+     margin: 1em;
+     padding: 0.5em;
+     border-radius: 4px;
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.container_panier .contenu_panier .totaux_card .titre {
+     height: 6vh;
+     border-bottom: 1px solid gray;
+     text-transform: uppercase;
+     display: flex;
+     font-size: 1.3em;
+     align-items: center;
+}
+.container_panier .contenu_panier .totaux_card .sous_total {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     height: 5vh;
+}
+.container_panier .contenu_panier .totaux_card .totaux {
+     display: flex;
+     height: 6vh;
+     align-items: center;
+     justify-content: space-between;
+     border-top: 1px solid gray;
+}
+.container_panier .contenu_panier .totaux_card .totaux span {
+     font-size: 1.2em;
+     font-weight: bold;
+     color: #034917;
+}
+
+
+
+/* formulaire de livraison */
+.container_panier .livraison_containers {
+     margin: 1em;
+     padding: 0.5em;
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.container_panier .livraison_containers p {
+     text-transform: uppercase;
+     margin-bottom: 1em;
+}
+
+.container_panier .livraison_containers .formulaire form .form {
+     display: flex;
+     flex-direction: column;
+}
+.container_panier .livraison_containers .formulaire form div input {
+     height: 5vh;
+     padding-left: 0.7em;
+}
+.container_panier .livraison_containers .formulaire form .valider {
+     height: 5.5vh;
+     margin-top: 0.6em;
+}
+.container_panier .livraison_containers .formulaire form .valider button {
+     height: 100%;
+     font-size: 1.2em;
+     border-radius: 3px;
+     border: none;
+     width: 100%;
+     cursor: pointer;
+     background: #034917;
+     color: white;
+}
+.container_panier .livraison_containers .formulaire form .payement {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-around;
+}
+.container_panier .livraison_containers .formulaire form .payement .livraison_div {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 0.6em;
+}
+#radio {
+     height: 2.5vh;
+}
+.mantine-14n9mxy {
+     display: flex;
+     align-items: center;
+}

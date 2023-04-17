@@ -1,0 +1,66 @@
+.publicité {
+     height: 18vh;
+     padding: 0 1em;
+     margin: 1.5em 0;
+     object-fit: cover;
+     overflow: hidden;
+     width: 100%;
+}
+.publicité .image {
+     height: 100%;
+     width: 100%;
+}
+
+/* index code */
+main {
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
+main article {
+     position: fixed;
+     bottom: 0;
+     background: #f6f6f6;
+     width: 100%;
+     height: 10vh;
+}
+
+/* Navbar */
+nav {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     height: 100%;
+}
+nav .nav {
+     display: flex;
+     text-decoration: none;
+     color: black;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-around;
+}
+nav .nav.active {
+     color: #034917;
+     font-weight: bold;
+}
+nav .nav span {
+     font-size: 1.3em;
+}
+nav .nav p {
+     font-size: 0.9rem;
+}
+nav .nav .nb {
+     position: absolute;
+     background: #034917;
+     color: white;
+     font-size: 0.7rem;
+     padding: 0.1em 0.4em;
+     font-weight: bold;
+     display: flex;
+     top: 1em;
+     right: 10.8em;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+}

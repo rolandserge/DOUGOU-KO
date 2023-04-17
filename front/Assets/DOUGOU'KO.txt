@@ -1,0 +1,10 @@
+DOUGOU'KO
+
+Codes des couleurs
+Rouge: #930207
+Vert: #034917
+
+HiOutlineShoppingBag panier icone
+AiOutlineHeart favoris icone
+TbHome home icone
+AiOutlineUser profile icone

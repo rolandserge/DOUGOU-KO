@@ -1,0 +1,73 @@
+.container_recap {
+     padding-top: 5em;
+}
+
+.container_recap .card_panier {
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+     margin: 0.5em;
+     display: flex;
+     justify-content: space-around;
+     padding: 0.2em;
+     height: 12vh;
+}
+.container_recap .card_panier .image_produit {
+     width: 23%;
+}
+.container_recap .card_panier .image_produit .image {
+     height: 100%;
+     width: 100%;
+}
+.container_recap .card_panier .detail_div {
+     width: 72%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+}
+.container_recap .card_panier .detail_div .name_produit {
+     font-size: 0.8em;
+}
+.container_recap .card_panier .detail_div .price {
+     font-weight: bold;
+     font-size: 0.8em;
+     color: #930207;
+}
+.container_recap .card_panier .detail_div .action_div {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+.container_recap .card_panier .detail_div .action_div .action_quantite {
+     font-size: 0.8em;
+     display: flex;
+     justify-content: space-between;
+}
+
+
+/* detail livraison */
+
+.container_recap .infos_livraison {
+     margin: 0.5em;
+}
+.container_recap .infos_livraison .head {
+     margin-bottom: 0.5em;
+}
+.container_recap .infos_livraison .card_livraison {
+     padding: 0.5em;
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+     border-radius: 4px;
+}
+.container_recap .infos_livraison .card_livraison .card {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 0.5em 0;
+}
+.container_recap .infos_livraison .card_livraison .card .tete {
+     width: 40%;
+     border: 1px solid;
+}
+.container_recap .infos_livraison .card_livraison .card .infos {
+     width: 58%;
+     border: 1px solid;
+     text-align: center;
+}
