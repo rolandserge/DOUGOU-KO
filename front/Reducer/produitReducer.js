@@ -3,6 +3,7 @@ import { produits } from "../Data/Produits";
 
 const initialState = {
      produits: [],
+     filtre: [],
      error: false,
      loading: true
 }
@@ -17,13 +18,13 @@ export const produitSlice = createSlice({
           },
           DetailProduit : (state, action) => {
 
-               const find = produits.filter(item => item.id == action.payload);
+               const find = produits.filter(item => item.id == action.payload); 
 
-               if(Object.keys(find).length >= 1) {
+               if(Object.keys(find).length == 1) {
 
-                   state.produits = find
+                    state.produits = find
                     state.loading = false
-                    state.error = false
+
                } else {
                     
                     state.error = true
@@ -34,11 +35,11 @@ export const produitSlice = createSlice({
 
                if(action.payload == 1) {
 
-                    state.produits = produits
+                    state.filtre = state.produits
 
                } else {
 
-                    state.produits = produits.filter(item => item.categorie == action.payload);
+                    state.filtre = state.produits.filter(item => item.categorie.id == action.payload);
                }
           }
      },

@@ -9,15 +9,20 @@ import Navbar from '../../Layouts/Navbar'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { AllProduits } from '../../Reducer/produitReducer'
-import { produits } from '../../Data/Produits'
+import axios from 'axios'
+import Loading from '../../Component/Loading'
 
-export default function Home() {
+export default function Home({produits}) {
   const dispatch = useDispatch()
 
   useEffect(() => {
       dispatch(AllProduits(produits))
   }, [dispatch])
-  
+
+  if(!produits) {
+
+    return <Loading />
+  }
   return (
     <>
       <Head>
@@ -42,4 +47,22 @@ export default function Home() {
       
     </>
   )
+}
+
+export async function loadProduits() {
+
+  const response = await axios.get('http://192.168.1.11:8000/api/produits');
+  return response
+}
+
+export async function getStaticProps() {
+  // code
+  const res  = await loadProduits()
+  const data = res.data.data
+
+  return {
+    props: {
+        produits: data
+    },
+  }
 }

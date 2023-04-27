@@ -155,7 +155,7 @@ export const produits = [
           description: "La descrption de notre telephone mobile"
      },
      {
-          id: 2,
+          id: 14,
           name: 'Salle de decor 2',
           price: 15000,
           quantity: 100,
@@ -355,7 +355,7 @@ export const produits = [
           description: "La descrption de notre telephone mobile"
      },
      {
-          id: 13,
+          id: 34,
           name: 'Banane',
           price: 500,
           quantity: 100,

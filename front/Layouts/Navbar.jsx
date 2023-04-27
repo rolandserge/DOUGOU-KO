@@ -1,13 +1,13 @@
 import React from 'react';
 import { TbHome } from "react-icons/tb"
-import { useCart } from "react-use-cart";
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
-import { HiOutlineShoppingBag } from "react-icons/hi2"
 import Link from 'next/link';
+import { IoNotificationsOutline } from "react-icons/io5"
+import { useAuth } from '../Hooks/auth';
 
 const Navbar = () => {
 
-     const { totalItems } = useCart();
+     const { user } = useAuth()
 
      return (
           <nav>
@@ -23,21 +23,31 @@ const Navbar = () => {
                     </span>
                     <p>Favoris</p>
                </Link>
-               <Link href='/Panier' className="nav">
-                    <span>
-                         <HiOutlineShoppingBag />
-                         <div className='nb'>
-                              { totalItems }
-                         </div>
-                    </span>
-                    <p>Panier</p>
-               </Link>
                <Link href='/' className="nav">
                     <span>
-                         <AiOutlineUser />
+                         <IoNotificationsOutline />
+                         <div className='nb'>
+                              { 1 }
+                         </div>
                     </span>
-                    <p>Profile</p>
+                    <p>Notif</p>
                </Link>
+               {
+                    user ?
+                         <Link href='/' className="nav">
+                              <span>
+                                   <AiOutlineUser />
+                              </span>
+                              <p>Profile</p>
+                         </Link>
+                    :
+                         <Link href='/Auth/login' className="nav">
+                              <span>
+                                   <AiOutlineUser />
+                              </span>
+                              <p>Se connecter</p>
+                         </Link>
+               }
           </nav>
      );
 };

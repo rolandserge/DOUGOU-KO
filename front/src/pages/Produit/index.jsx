@@ -1,40 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { categories } from '../../../Data/Categories';
 import ProductCard from '../../../Component/Produit/ProductCard';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ProduitCategories } from '../../../Reducer/produitReducer';
 import Nav from '../../../Layouts/Nav';
+import useData from '../../../Hooks/data';
+import axios from 'axios';
+import Loading from '../../../Component/Loading';
 
+const index = ({produits}) => {
 
-const index = () => {
+     const { categories } = useData()
 
      const [active, setActive] = useState()
      const [check, setCheck ] = useState(true)
-
+     const [data, setData] = useState([])
      const router = useRouter()
      const dispatch = useDispatch()
      const { categorie } = router.query
-     const { produits } = useSelector(item => item.produits)
-
-     useEffect(() => {
-          dispatch(ProduitCategories(categorie))
-     }, [dispatch, categorie])
 
      const FilterCategorie = (categorie) => {
+
           dispatch(ProduitCategories(categorie))
           setActive(categorie)
           setCheck(false)
+          if(categorie == 1) {
+               setData(produits)
+          } else {
+               const filter = produits.filter((x) => x.categorie.id == categorie)
+               setData(filter)
+          }
      }
+
+     const FilterData = () => {
+
+          if(categorie == 1) {
+
+              return produits
+
+          } else {
+  
+              return produits.filter((x) => x.categorie.id == categorie)
+          }
+      }
+      
      const ChangeClasse = (index) => {
+
           if(index == active) {
-     
                return "active"
-
           } else if (categorie == index && check) {
-
                return "active"
           } 
           else {
@@ -46,13 +62,24 @@ const index = () => {
           <>
           <Nav titre="Listes des produits" retour="/"/>
           <section className='produits_pages'>
+               <div className="accroche">
+                    <div className="fond">
+
+                    </div>
+                    <div className='text'>
+                         <p>Tous nos produis sont disponibles ici</p>
+                    </div>
+               </div>
                <div className="categories_all">
                     <Swiper
                          spaceBetween={8}
                          slidesPerView={2.5}
                     >
+                          <SwiperSlide>
+                              <button className={ChangeClasse(1)} onClick={() => FilterCategorie(1)}>{'Tous'}</button>
+                         </SwiperSlide>
                          {
-                              categories.map((categorie, index) =>
+                              categories?.map((categorie, index) =>
                                    (
                                         <SwiperSlide key={index}>
                                              <button className={ChangeClasse(categorie.id)} onClick={() => FilterCategorie(categorie.id)}>{categorie.name}</button>
@@ -64,7 +91,11 @@ const index = () => {
                </div>
                <div className="produit_all">
                     {
-                         produits.map((produit, index) => (
+                         Object.keys(data).length >=1 ? data?.map((data, index) => (
+                              <ProductCard produit={data} key={index} />
+                         )) :
+
+                         FilterData()?.map((produit, index) => (
                               <ProductCard produit={produit} key={index} />
                          ))
                     }
@@ -75,3 +106,21 @@ const index = () => {
 };
 
 export default index;
+
+export async function loadProduits() {
+
+     const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/produits`);
+     return response
+}
+   
+   export async function getStaticProps() {
+     // code
+     const res  = await loadProduits()
+     const data = res.data.data
+   
+     return {
+       props: {
+           produits: data
+       },
+     }
+   }

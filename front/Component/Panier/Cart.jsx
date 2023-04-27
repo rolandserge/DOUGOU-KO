@@ -19,7 +19,7 @@ const Cart = ({item}) => {
      return (
           <div className="card_panier">
                <div className='image_produit'>
-                    <Image src={item.image} alt='Image du produit' priority className='image' />
+                    <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.image[0].url}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.image[0].url}`} unoptimized={true} width={50} height={50} alt={item.image[0].name} priority className='image' />
                </div>
                <div className='detail_div'>
                     <div className='name_produit'>
@@ -27,6 +27,7 @@ const Cart = ({item}) => {
                     </div>
                     <div className='price'>
                          <span>{(item.price * item.quantity).toLocaleString("fr-FR")} FCFA</span>
+                         <span className='reduction'>{(item.price + item.reduction).toLocaleString("fr-FR") + " FCFA"}</span>
                     </div>
                     <div className='action_div'>
                          <div className='action_quantite'>

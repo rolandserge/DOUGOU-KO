@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\API\CategorieController;
+use App\Http\Controllers\API\CommandeController;
+use App\Http\Controllers\API\ImageControler;
+use App\Http\Controllers\API\ProduitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +19,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function() {
+
+    Route::post('/logout', [UserController::class, 'logout']);
+    Route::get('/me', [UserController::class, 'me']);
+
 });
+
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
+
+
+// categorie route action
+Route::get('/categories', [CategorieController::class, 'index']);
+Route::post('add-categorie', [CategorieController::class, 'store']);
+
+
+// produit actions route
+Route::get('/produits', [ProduitController::class, 'index']);
+Route::post('/add-produit', [ProduitController::class, 'store']);
+Route::get('/detail-produit/{id}', [ProduitController::class, 'show']);
+
+
+// image produit action route
+Route::get('/image-produits', [ImageControler::class, 'index']);
+Route::post('/add-image', [ImageControler::class, 'store']);
+
+
+// commande action route
+Route::post('/add-commande', [CommandeController::class, 'store']);
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//
+//  return $request->user();
+// });

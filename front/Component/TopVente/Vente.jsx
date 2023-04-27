@@ -2,13 +2,14 @@ import React from 'react';
 import CardVente from './CardVente';
 import { useCart } from "react-use-cart";
 import { Carousel } from '@mantine/carousel';
-import { produits } from '../../Data/Produits';
-
+import useData from '../../Hooks/data';
 
 
 const Vente = () => {
 
      const { addItem } = useCart();
+
+     const { produits } = useData()
      
      return (
          <section className='top_vente'>
@@ -27,7 +28,7 @@ const Vente = () => {
                          ]}
                     >
                          {
-                              produits.filter(x => x.top == true).map((produit, index) => (
+                              produits?.filter(x => x.top == 1).map((produit, index) => (
                                    <Carousel.Slide>
                                         <CardVente produit={produit} key={index}/>
                                    </Carousel.Slide>

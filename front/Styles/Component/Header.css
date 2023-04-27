@@ -16,16 +16,7 @@ header .container_header {
      display: flex;
      justify-content: space-between;
      align-items: center;
-     width: 97%;
-}
-header .container_header .menu {
-     width: 10%;
-     cursor: pointer;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     font-size: 2.2em;
-     color: black;
+     width: 90%;
 }
 header .container_header .logo_div {
      width: 22%;
@@ -36,23 +27,45 @@ header .container_header .logo_div .logo {
      height: 100%;
 }
 header .container_header .notif {
-     width: 10%;
-     font-size: 1.7em;
+     height: 3vh;
+}
+header .container_header .notif .icone {
+     font-size: 1.6em;
      display: flex;
      cursor: pointer;
      align-items: center;
      justify-content: center;
 }
-header .container_header .notif div {
-     position: absolute;
-     padding: 0.2em 0.35em;
+header .container_header .notif .nombre {
+     position: relative;
+     top: -1em;
+     right: -1em;
      display: flex;
-     align-items: center;
      justify-content: center;
-     border-radius: 50%;
-     font-size: 0.3em;
-     top: 1.5em;
-     background: red;
+     background: #034917;
      color: white;
-     right: 0.9em;
+     align-items: center;
+     width: 80%;
+     border-radius: 50%;
+     padding:  0;
+     font-size: 0.8em;
+     font-weight: bold;
+}
+
+header .container_header .auth {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-decoration: none;
+     color: black;
+     justify-content: center;
+}
+header .container_header .auth .icone {
+     font-size: 1.5em;
+     height: 3.9vh;
+     font-weight: bold;
+}
+header .container_header .auth span {
+     font-size: 0.5em;
+     font-weight: bold;
 }

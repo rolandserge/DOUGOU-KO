@@ -22,7 +22,7 @@ main article {
      bottom: 0;
      background: #f6f6f6;
      width: 100%;
-     height: 10vh;
+     height: 9vh;
 }
 
 /* Navbar */
@@ -48,19 +48,45 @@ nav .nav span {
      font-size: 1.3em;
 }
 nav .nav p {
-     font-size: 0.9rem;
+     font-size: 0.8em;
 }
 nav .nav .nb {
      position: absolute;
-     background: #034917;
-     color: white;
-     font-size: 0.7rem;
-     padding: 0.1em 0.4em;
-     font-weight: bold;
-     display: flex;
      top: 1em;
-     right: 10.8em;
+     right: 14.8em;
+     display: flex;
+     justify-content: center;
+     background: #930207;;
+     color: white;
+     align-items: center;
+     width: 5%;
+     border-radius: 50%;
+     padding: 0.1em;
+     font-weight: bold;
+     font-size: 0.5em;
+}
+
+/* loading style code */
+.loading {
+     display: flex;
      align-items: center;
      justify-content: center;
-     border-radius: 50%;
+     flex-direction: column;
+     min-height: 100vh;
+
+}
+.loading .logo {
+     animation: loading 2s infinite;
+     transition: all .2s ease-out;
+}
+@keyframes loading {
+     0% {
+          transform: scale(1.1);
+     }
+     50% {
+          transform: scale(1.5);
+     }
+     100% {
+          transform: scale(1.1);
+     }
 }

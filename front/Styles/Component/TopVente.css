@@ -11,12 +11,12 @@
 }
 .card_produit {
      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-     height: 32vh;
+     height: 35vh;
      width: 100%;
      border-radius: 4px;
 }
 .card_produit .container_header {
-     height: 68%;
+     height: 65%;
 }
 .card_produit .container_header .favoris {
      position: absolute;
@@ -47,36 +47,40 @@
      height: 100%;
 }
 .card_produit .container_detail {
-     height: 35%;
+     height: 32%;
      display: flex;
+     margin: 0.5em;
      flex-direction: column;
      justify-content: space-around;
 
 }
 .card_produit .container_detail .name_product {
-     margin: 0.5em;
      text-decoration: none;
 }
 .card_produit .container_detail .name_product p {
      font-size: 0.8em;
      color: black;
 }
+.card_produit .container_detail .reduction p {
+     text-decoration: line-through;
+     color: gray;
+     font-size: 0.9em;
+}
 .card_produit .container_detail .price_cart {
      display: flex;
      justify-content: space-between;
      align-items: center;
-     margin: 0.5em;
 }
 .card_produit .container_detail .price_cart .price {
      color: #930207;
      font-weight: bold;
-     font-size: 0.9rem;
+     font-size: 0.9em;
      text-decoration: none;
 }
 .card_produit .container_detail .price_cart div {
      font-size: 1em;
      cursor: pointer;
-     padding: 0.2rem;
+     padding: 0.2em;
      display: flex;
      align-items: center;
      justify-content: center;

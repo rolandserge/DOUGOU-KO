@@ -1,25 +1,30 @@
 import React from 'react'
-import { IoNotificationsOutline } from "react-icons/io5"
-import { HiOutlineMenu } from "react-icons/hi"
 import Logo from '../Assets/LogoDk.png'
 import Image from "next/image"
+import { HiOutlineShoppingBag } from "react-icons/hi2"
+import { useCart } from 'react-use-cart'
+import { useRouter } from 'next/router'
 
 const Header = () => {
+
+     const { totalItems } = useCart()
+     const router = useRouter()
+
      return (
           <header>
                <div className='container_header'>
-                    <div className='menu'>
-                         <HiOutlineMenu />
-                    </div>
                     <div className='logo_div'>
                          <Image src={Logo} className='logo' alt="le logo de DOUGOU'KO" />
                     </div>
-                    <div className='notif'>
-                        <IoNotificationsOutline />
-                        <div>
-                         50
-                        </div>
-                    </div>
+                    <div className='notif' onClick={() => router.push('/Panier')}>
+                         <div className='icone'>
+                              <HiOutlineShoppingBag />
+                         </div>
+                         <div className='nombre'>
+                              { totalItems }
+                         </div>
+                    </div> 
+                           
                </div>
           </header>
      );
