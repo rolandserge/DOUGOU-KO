@@ -1,0 +1,34 @@
+.header_admin {
+     display: flex;
+     height: 11vh;
+     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+     justify-content: space-between;
+     align-items: center;
+     position: fixed;
+     background: white;
+     width: 100%;
+}
+.header_admin .logo_admin {
+     margin-left: 3em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+.header_admin .user_info {
+     display: flex;
+     align-items: center;
+     margin-right: 3em;
+}
+.header_admin .user_info .rond {
+     border-radius: 50px;
+     margin-right: 0.6em;
+     text-transform: uppercase;
+     padding: 0.5em 0.75em;
+     background: #f6f6f6;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+.header_admin .user_info .nom {
+     width: 100%;
+}

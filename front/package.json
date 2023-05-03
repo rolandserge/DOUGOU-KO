@@ -11,6 +11,7 @@
   "dependencies": {
     "@mantine/carousel": "^6.0.7",
     "@mantine/core": "^6.0.7",
+    "@mantine/dropzone": "^6.0.10",
     "@mantine/modals": "^6.0.7",
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^1.9.3",
@@ -19,7 +20,9 @@
     "notistack": "^3.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-icons": "^4.8.0",
+    "react-imask": "^6.6.1",
     "react-phone-number-input": "^3.2.20",
     "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",

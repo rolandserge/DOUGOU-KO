@@ -19,7 +19,12 @@ class CategorieController extends Controller
     }
 
     public function store(CategorieRequest $request) {
-
+        
+        // return response()->json([
+        //     "status" => "success",
+        //     "request" => $request->all()
+        // ]);
+        
         if($request->hasFile('image')) {
 
             $file = $request->file("image");
@@ -27,16 +32,22 @@ class CategorieController extends Controller
             $filename = time().'.'.$extension;
             $file->move(public_path('uploads/categorie/'), $filename);
             $image = 'uploads/categorie/'.$filename;
+            
+            Categorie::create([
+                'name' => $request->name,
+                "description" => $request->description,
+                "image" => $image
+            ]);
+    
+            return response()->json([
+                "status" => "success",
+            ]);
+        } else {
+
+            return response()->json([
+                "status" => "erreur grave",
+            ]);
         }
 
-        Categorie::create([
-            'name' => $request->name,
-            "description" => $request->description,
-            "image" => $image
-        ]);
-
-        return response()->json([
-            "status" => "success",
-        ]);
     }
 }

@@ -12,7 +12,7 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date_livraison', 'payement', 'totaux', 'status', 'user_id', 'livraison_id'];
+    protected $fillable = ['date_livraison', 'payement', 'totaux', 'status', 'user_id', 'numero', 'latitude', 'longitude', 'adresse_livraison'];
 
     /**
      * Get all of the comments for the Commande

@@ -1,0 +1,38 @@
+.admin_layout_page {
+     display: flex;
+     justify-content: space-between;
+     padding-top: 5em;
+}
+.admin_layout_page aside {
+     width: 20%;
+     position: fixed;
+     overflow-y: scroll;
+     min-height: 100vh;
+     padding: 1em;
+}
+.admin_layout_page aside .elements {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     height: 8.5vh;
+     text-decoration: none;
+     color: gray;
+}
+.admin_layout_page aside .elements .icone {
+     font-size: 1.6em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+.admin_layout_page aside .elements .titre {
+     width: 82%;
+}
+.admin_layout_page .contenu_page_admin {
+     display: flex;
+     justify-content: right;
+     width: 100%;
+}
+.admin_layout_page .contenu_page_admin .page_contenu {
+     width: 80%;
+     padding: 1em;
+}

@@ -11,7 +11,7 @@ import PanierVide from '../../../Component/Panier/PanierVide';
 import { useDispatch } from 'react-redux';
 import { InfoLivraison } from '../../../Reducer/livraisonReducer';
 import { useAuth } from '../../../Hooks/auth';
-import PhoneInput, { isValidPhoneNumber, formatPhoneNumber } from 'react-phone-number-input'
+import PhoneInput, { formatPhoneNumber } from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 
 

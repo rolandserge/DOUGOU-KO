@@ -27,12 +27,14 @@ class UserController extends Controller
             ]);
         } else {
 
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
-
+            
+            Auth::login($user);
+            
             return response()->json([
                 'status' => 200,
                 'message' => 'Personnel créee avec success'
@@ -58,7 +60,7 @@ class UserController extends Controller
         } else {
 
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-
+                 
                 return response()->json([
                     'status' => 200,
                     'data' => Auth::user(),

@@ -14,7 +14,7 @@ const Finish = () => {
                     <Image src={Logo} alt="Le logo de l'entreprise" width={150} />
                </Link>
                <div className='commande'>
-                    <h3>Votre commande a ete prise en compte avec sucess</h3>
+                    <h3>Votre commande a été prise en compte avec succès</h3>
                </div>
                <div className='container_image'>
                     <div className='image_div'>
@@ -22,7 +22,7 @@ const Finish = () => {
                     </div>
                </div>
                <div className='retour'>
-                    <Link href="/" className='link'>Faire d'autre achat</Link>
+                    <Link href="/" className='link'>Faire d'autres achats</Link>
                </div>
           </div>
      );

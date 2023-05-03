@@ -51,7 +51,7 @@ export default function Home({produits}) {
 
 export async function loadProduits() {
 
-  const response = await axios.get('http://192.168.1.11:8000/api/produits');
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/produits`);
   return response
 }
 

@@ -30,7 +30,8 @@ class ProduitRequest extends FormRequest
             "stock" => "integer|required",
             "reduction" => "integer|required",
             "description" => "string|required",
-            "categorie" => "integer|required"
+            "categorie" => "integer|required",
+            "images" => "required"
         ];
     }
 

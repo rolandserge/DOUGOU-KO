@@ -1,0 +1,31 @@
+.produit_admin_entete {
+     margin: 1em 0;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     height: 13vh;
+     background: #f6f6f6;
+     border-radius: 4px;
+     padding: 0 1em;
+}
+.produit_admin_entete .produit p {
+     font-weight: 600;
+     font-size: 1.2em;
+}
+.produit_admin_entete .recherche_prod {
+     width: 50%;
+}
+.produit_admin_entete .recherche_prod .input_search {
+     height: 100%;
+     width: 100%;
+} 
+.mantine-g9emdi {
+     height: 7vh;
+}
+.produit_admin_entete .ajouter_produit .add {
+     text-decoration: none;
+     background: #034917;
+     color: white;
+     padding: 0.7em;
+     border-radius: 5px;
+}
