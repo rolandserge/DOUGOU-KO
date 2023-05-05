@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Switch, InputBase,  Input, Button, NumberInput, Textarea, Group, Text, rem } from '@mantine/core';
 import AdminLayout from '../../../../Layouts/AdminLayout';
-import {useDropzone} from 'react-dropzone';
-import { IoImageOutline } from "react-icons/io5";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
@@ -16,22 +14,23 @@ const ajouter = ({categories}) => {
      const [prix, setPrix] = useState();
      const [reduction, setReduction] = useState();
      const [qty, setQty] = useState();
-     const [description, setDescription] = useState('');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+     const [image, setImage] = useState()
+     const [description, setDescription] = useState();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
      const [images, setImages] = useState([]);
 
      const { enqueueSnackbar } = useSnackbar()
 
 
-     const AjouterProduit = async (e) => {
+     const AjouterProduit = async(e) => {
           
           e.preventDefault()
 
           const categorie = categorieRef.current.value
           const name = nameRef.current.value
   
-          if(images.length == 0) {
+          if(image.length == 0) {
 
-               enqueueSnackbar('Veillez choisir une ou plusieurs image', {variant: "error"})
+               enqueueSnackbar("S'il vous plait! veillez choisir l'image du produit", {variant: "error"})
 
           } else {
 
@@ -43,27 +42,35 @@ const ajouter = ({categories}) => {
                formData.append('reduction', reduction)
                formData.append('description', description)
                formData.append('categorie', categorie)
-     
+               formData.append('image', image[0])
                for(let i = 0; i < images.length; i++) {
-
                     formData.append('images[]', images[i])
                }
-               
-                    await axiosAuth.post("/api/add-produit", formData).then(res => {
+             
+               await axiosAuth.post("/api/add-produit", formData)
+               .then(res => {
+                    if(res.data.status === "success") {
 
-                         // if(res.data.status === "success") {
-                         //      console.log(res.data);
-                         //      enqueueSnackbar('Produit crée avec succes', {variant: "success"})
-
-                         // } else {
-
-                         //      console.log(res);
-                         // }
-                         console.log(res.data)
-                    }).catch(error => {
-                         console.log(error);
-                    })
-     }}
+                         enqueueSnackbar('Produit crée avec succes', {variant: "success"})
+                         setPrix('')
+                         setImages('')
+                         setImage('')
+                         setQty('')
+                         setReduction('')
+                         setDescription('')
+                         nameRef.current.value = ""
+                         categorieRef.current.value = ""
+                         
+                    } else {
+                         console.log(res)
+                         enqueueSnackbar("Une erreur s'est produite", {variant: "error"})
+                    }
+               })
+               .catch(error => {
+                    console.log(error);
+               })   
+          }
+     }
 
      return (
           <div>
@@ -95,23 +102,22 @@ const ajouter = ({categories}) => {
                          </div>
                          <div className="images_container">
                               <Dropzone
-                                   onDrop={(files) => setImages(files)}
-                                   onReject={(files) => console.log('rejected files', files)}
+                                   onDrop={(files) => {
+                                             setImage(files)
+                                             enqueueSnackbar('Images uploade avec success', {variant: "success"})
+                                        }
+                                   } 
+                                   onReject={(files) => enqueueSnackbar('Les images choisies sont invalides', {variant: "error"})}
+                                   maxSize={3 * 1024 ** 2}
                                    accept={IMAGE_MIME_TYPE}
                               >
                                    <Group position="center" spacing="xl" style={{ minHeight: rem(220), pointerEvents: 'none' }}>
-                                   <Dropzone.Accept>
-
-                                   </Dropzone.Accept>
-                                   <Dropzone.Reject>
-                                   
-                                   </Dropzone.Reject>
                                    <div>
                                         <Text size="xl" inline>
-                                        Drag images here or click to select files
+                                             Choisissez l'image du produit
                                         </Text>
                                         <Text size="sm" color="dimmed" inline mt={7}>
-                                        Attach as many files as you like, each file should not exceed 5mb
+                                             Joignez un fichier que vous le souhaitez, le fichier ne doit pas dépasser 5 Mo
                                         </Text>
                                    </div>
                                    </Group>
@@ -139,6 +145,29 @@ const ajouter = ({categories}) => {
                          </div>
                          <div>
                               <Textarea placeholder='Entrer la description du produit' value={description} m="1em 0" label="Entrer la descritpion du produit" required onChange={(event) => setDescription(event.currentTarget.value)} />
+                         </div>
+                         <div className="images_container">
+                              <Dropzone
+                                   onDrop={(files) => {
+                                             setImages(files)
+                                             enqueueSnackbar('Images uploade avec success', {variant: "success"})
+                                        }
+                                   } 
+                                   onReject={(files) => enqueueSnackbar('Les images choisies sont invalides', {variant: "error"})}
+                                   maxSize={3 * 1024 ** 2}
+                                   accept={IMAGE_MIME_TYPE}
+                              >
+                                   <Group position="center" spacing="xl" style={{ minHeight: rem(220), pointerEvents: 'none' }}>
+                                   <div>
+                                        <Text size="xl" inline>
+                                             Sélectionner les sous images du produit
+                                        </Text>
+                                        <Text size="sm" color="dimmed" inline mt={7}>
+                                             Joignez autant de fichiers que vous le souhaitez, chaque fichier ne doit pas dépasser 5 Mo
+                                        </Text>
+                                   </div>
+                                   </Group>
+                              </Dropzone>
                          </div>
                          <div>
                               <label htmlFor="">Top vente</label>

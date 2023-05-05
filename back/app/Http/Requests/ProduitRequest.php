@@ -28,6 +28,7 @@ class ProduitRequest extends FormRequest
             "price" => "integer|required",
             "top" => "string|boolean",
             "stock" => "integer|required",
+            "image" => "required",
             "reduction" => "integer|required",
             "description" => "string|required",
             "categorie" => "integer|required",

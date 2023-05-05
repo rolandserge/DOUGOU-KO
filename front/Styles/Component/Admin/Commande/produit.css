@@ -1,0 +1,57 @@
+.container_commande {
+     margin: 1em 0;
+     display: flex;
+     justify-content: flex-end;
+}
+.container_commande .contenu_commande {
+     width: 33%;
+}
+.container_commande .contenu_commande .sous_total {
+     margin-bottom: 1.5em;
+}
+.container_commande .contenu_commande .sous_total div {
+     display: flex;
+     margin-bottom: 0.8em;
+     justify-content: space-between;
+}
+.container_commande .changer_etat form .date {
+     display: flex;
+     flex-direction: column;
+}
+.container_commande .changer_etat form .date input {
+     height: 6vh;
+     padding-left: 0.5em;
+}
+
+
+
+/* tr .status_commande {
+     text-align: center;
+     padding: 0;
+     border-radius: 50px;
+}
+*/
+.mantine-mmcoum tbody tr td p{
+     text-align: center;
+     border-radius: 50px;
+     color: white;
+     padding: 0.1em 0.5em;
+     font-size: 0.8em;
+}
+.mantine-mmcoum tbody tr td .livrer {
+     background: green;
+}
+.mantine-mmcoum tbody tr td .cour {
+     background: red;
+}
+
+.mantine-mmcoum tbody tr td.action {
+     text-align: center;
+}
+.mantine-mmcoum tbody tr td span {
+     cursor: pointer;
+     font-size: 1.5em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}

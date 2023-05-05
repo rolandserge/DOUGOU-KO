@@ -15,7 +15,7 @@ const CardVente = ({produit}) => {
                <div className='card_produit'>
                     <div className='container_header'>
                          <Link href={`/Produit/${produit.id}`} className='container_image'>
-                              <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image[0].url}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image[0].url}`} unoptimized={true} width={20} height={20} alt={produit.image[0].name} className='produit' />
+                              <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} unoptimized={true} width={20} height={20} alt={produit.name} className='produit' />
                          </Link>
                          <div className='favoris active'>
                               <AiOutlineHeart />

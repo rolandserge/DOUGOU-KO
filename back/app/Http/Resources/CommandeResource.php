@@ -16,10 +16,12 @@ class CommandeResource extends JsonResource
     {
 
         return [
+            'id' => $this->id,
             'numero' => $this->numero,
             'totaux' => $this->totaux,
             'adresse' => $this->adresse_livraison,
-            'date' => $this->date_livraison,
+            "date_commande" => $this->created_at,
+            'date_livraison' => $this->date_livraison,
             'payement' => $this->payement,
             "status" => $this->status
         ];

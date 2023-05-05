@@ -20,7 +20,7 @@ const ajouter = () => {
           if(typeof file === "undefined") {
 
                enqueueSnackbar('Veillez choisir une image', {variant: "error"})
-               
+
           } else {
 
                const formData = new FormData()
@@ -36,6 +36,8 @@ const ajouter = () => {
                          setFile('')
                          nameRef.current.value = ""
                          enqueueSnackbar('Categorie crée avec succes', {variant: "success"})
+                    } else {
+                         enqueueSnackbar("Une erreur s'est produite lors de la creation de la categorie", {variant: "error"})
                     }
                })
                .catch(error => console.log(error))
@@ -59,23 +61,22 @@ const ajouter = () => {
                     </div>
                     <div>
                          <Dropzone
-                              onDrop={(files) => setFile(files)}
-                              onReject={(files) => console.log('rejected files', files)}
+                              onDrop={(files) =>  {
+                                        setFile(files)
+                                        enqueueSnackbar('Images uploade avec success', {variant: "success"})
+                                   }
+                              }
+                              onReject={(files) => enqueueSnackbar('Les images choisies sont invalides', {variant: "error"})}
                               accept={IMAGE_MIME_TYPE}
+                              maxSize={3 * 1024 ** 2}
                          >
                               <Group position="center" spacing="xl" style={{ minHeight: rem(220), pointerEvents: 'none' }}>
-                              <Dropzone.Accept>
-
-                              </Dropzone.Accept>
-                              <Dropzone.Reject>
-                                 
-                              </Dropzone.Reject>
                               <div>
                                    <Text size="xl" inline>
-                                   Drag images here or click to select files
+                                        Faites glisser des images ici ou cliquez pour sélectionner une image de la categorie
                                    </Text>
                                    <Text size="sm" color="dimmed" inline mt={7}>
-                                   Attach as many files as you like, each file should not exceed 5mb
+                                        Joignez un fichier que vous le souhaitez, L'image ne doit pas dépasser 5 Mo
                                    </Text>
                               </div>
                               </Group>

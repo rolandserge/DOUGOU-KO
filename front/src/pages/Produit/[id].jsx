@@ -21,7 +21,6 @@ import CardVente from '../../../Component/TopVente/CardVente';
 
 const ProdutId = ({produit, produits}) => {
 
-
      const { addItem, inCart, items, updateItemQuantity } = useCart();
 
      const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -36,10 +35,8 @@ const ProdutId = ({produit, produits}) => {
      }, [])
 
      const addCart = (produit) => {
-
           addItem(produit)
           enqueueSnackbar("Produit ajouter au panier", { variant: "success" })
-          
      }
      return (
           <>
@@ -64,10 +61,13 @@ const ProdutId = ({produit, produits}) => {
                                                   modules={[FreeMode, Navigation, Thumbs]}
                                                   className="mySwiper2"
                                                   >
+                                                        <SwiperSlide>
+                                                            <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} unoptimized={true} className='image' width={0} height={0} alt={produit.name} priority />
+                                                       </SwiperSlide>
                                                        {
-                                                            produit.image.map(image => (
+                                                            produit.images.map((image, index) => (
 
-                                                                 <SwiperSlide>
+                                                                 <SwiperSlide key={index}>
                                                                       <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} unoptimized={true} className='image' width={0} height={0} alt={image.name} priority />
                                                                  </SwiperSlide>
                                                             ))
@@ -87,8 +87,11 @@ const ProdutId = ({produit, produits}) => {
                                                   modules={[FreeMode, Navigation, Thumbs]}
                                                   className="mySwiper"
                                                   >
+                                                        <SwiperSlide>
+                                                            <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} unoptimized={true} className='image' width={0} height={0} alt={produit.name} priority />
+                                                       </SwiperSlide>
                                                         {
-                                                            produit.image.map((image, index) => (
+                                                            produit.images.map((image, index) => (
 
                                                                  <SwiperSlide key={index}>
                                                                       <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} unoptimized={true} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} className='image' width={100} height={100} alt={image.name} priority />

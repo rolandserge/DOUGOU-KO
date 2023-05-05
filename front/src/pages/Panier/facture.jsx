@@ -4,26 +4,23 @@ import Nav from "../../../Layouts/Nav";
 import { useCart } from "react-use-cart";
 import Image from "next/image";
 import { useAuth } from "../../../Hooks/auth";
-import PanierVide from "../../../Component/Panier/PanierVide";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { ClearLivraison } from "../../../Reducer/livraisonReducer";
 import Loading from "../../../Component/Loading";
-import axios from "../../../Libs/axios";
+import axiosAuth from "../../../Libs/axios";
 
 const facture = () => {
+
   const { cartTotal, items, isEmpty, emptyCart } = useCart();
 
   const [mounted, setMounted] = useState(false);
-  const [longitude, setLongitude] = useState();
-  const [latitude, setLatitude] = useState();
 
   const { user } = useAuth({ middleware: "auth" });
 
   const { livraison } = useSelector((item) => item.livraison);
 
   const router = useRouter();
-  const dispatch = useDispatch();
 
   var ladate = new Date();
 
@@ -32,18 +29,18 @@ const facture = () => {
     e.preventDefault();
 
     try {
-      await axios
+      await axiosAuth
         .post(`/api/add-commande`, {
           payement: livraison.paye,
           totaux: cartTotal,
           adresse: livraison.adresse,
           numero: livraison.numero,
           panier: items,
+          ville: livraison.ville,
           user: user.id,
         })
         .then((res) => {
           if (res.data.status == 200) {
-            // console.log(res.data.message)
             router.push("/Panier/Finish");
             emptyCart();
           }
@@ -56,17 +53,16 @@ const facture = () => {
   useEffect(() => {
     setMounted(true);
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //   setLatitude(position.coords.latitude);
+    //   setLongitude(position.coords.longitude);
+    // });
 
-    //apres faire un axios pour recuperer les informations du client
-
-    if (mounted && (Object.keys(livraison).length == 0 || isEmpty)) {
-      router.push("/Panier");
-    }
+        if(mounted && (Object.keys(livraison).length == 0 || isEmpty)) {
+          router.push("/Panier");
+        }
   }, [mounted]);
+
 
   if (mounted && (Object.keys(livraison).length == 0 || isEmpty)) {
     return (
@@ -86,13 +82,13 @@ const facture = () => {
               <div className="image_produit">
                 <Image
                   loader={() =>
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/${item?.image[0].url}`
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/${item?.image}`
                   }
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item?.image[0].url}`}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item?.image}`}
                   width={50}
                   height={50}
                   unoptimized={true}
-                  alt={item.image[0].name}
+                  alt={item.name}
                   priority
                   className="image"
                 />
@@ -120,50 +116,58 @@ const facture = () => {
             <h3>Detail de livraison</h3>
           </div>
           <div className="card_livraison">
-            <div className="card">
-              <div className={"tete"}>
-                <p>Date</p>
-              </div>
-              <div className="infos">
-                {ladate.getDate() +
-                  "/" +
-                  (ladate.getMonth() + 1) +
-                  "/" +
-                  ladate.getFullYear()}
-              </div>
-            </div>
-            <div className="card">
-              <div className="tete">
-                <p>Numero</p>
-              </div>
-              <div className="infos">
-                <p>{mounted && livraison?.numero}</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="tete">
-                <p>Adress E-mail</p>
-              </div>
-              <div className="infos">
-                <p>{user?.email}</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="tete">
-                <p>Payement</p>
-              </div>
-              <div className="infos">
-                <p>{mounted && livraison?.paye}</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="tete">
-                <p>Adresse de livraison</p>
-              </div>
-              <div className="infos">
-                <p>{mounted && livraison?.adresse}</p>
-              </div>
-            </div>
+                <div className="card">
+                    <div className={"tete"}>
+                      <p>Date</p>
+                    </div>
+                    <div className="infos">
+                      {ladate.getDate() +
+                        "/" +
+                        (ladate.getMonth() + 1) +
+                        "/" +
+                        ladate.getFullYear()}
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="tete">
+                      <p>Numero</p>
+                    </div>
+                    <div className="infos">
+                      <p>{mounted && livraison?.numero}</p>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="tete">
+                      <p>Adress E-mail</p>
+                    </div>
+                    <div className="infos">
+                      <p>{user?.email}</p>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="tete">
+                      <p>Payement</p>
+                    </div>
+                    <div className="infos">
+                      <p>{mounted && livraison?.paye}</p>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="tete">
+                      <p>Ville</p>
+                    </div>
+                    <div className="infos">
+                      <p>{mounted && livraison?.ville}</p>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="tete">
+                      <p>Adresse de livraison</p>
+                    </div>
+                    <div className="infos">
+                      <p>{mounted && livraison?.adresse}</p>
+                    </div>
+                </div>
           </div>
         </div>
         <div className="totaux_card">

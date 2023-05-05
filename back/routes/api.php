@@ -31,6 +31,9 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 Route::get('/commandes', [CommandeController::class, 'index']);
+Route::get('/commande/{id}', [CommandeController::class, 'show']);
+Route::post('/updatecommande/{id}', [CommandeController::class, 'updatestatus']);
+
 
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);

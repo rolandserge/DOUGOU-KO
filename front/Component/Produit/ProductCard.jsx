@@ -26,7 +26,7 @@ const ProductCard = ({produit}) => {
           <div className='card_produit_all'>
                <div className='container_header'>
                     <div className='container_image' onClick={() => router.push(`/Produit/${produit.id}`)}  >
-                         <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit?.image[0]?.url}`} unoptimized={true} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit?.image[0]?.url}`} priority width={50} height={50} alt={produit?.image[0]?.name} className='produit' />
+                         <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit?.image}`} unoptimized={true} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit?.image}`} priority width={50} height={50} alt={produit?.name} className='produit' />
                     </div>
                     <div className='favoris'>
                          <AiOutlineHeart />

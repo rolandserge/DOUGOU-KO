@@ -12,20 +12,25 @@
 }
 .admin_layout_page aside .elements {
      display: flex;
-     justify-content: space-between;
+     justify-content: space-around;
      align-items: center;
-     height: 8.5vh;
+     height: 7vh;
+     border-radius: 3px;
      text-decoration: none;
      color: gray;
 }
+.admin_layout_page aside .elements.active {
+     background: green;
+     color: white;
+}
 .admin_layout_page aside .elements .icone {
-     font-size: 1.6em;
+     font-size: 1.5em;
      display: flex;
      align-items: center;
      justify-content: center;
 }
 .admin_layout_page aside .elements .titre {
-     width: 82%;
+     width: 80%;
 }
 .admin_layout_page .contenu_page_admin {
      display: flex;

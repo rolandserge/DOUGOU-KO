@@ -25,7 +25,7 @@ class CommandeRequest extends FormRequest
             'payement' => 'required|string',
             'totaux' => 'integer|required',
             "adresse" => 'required|string',
-            "numero" => "integer|required",
+            "numero" => "string|required",
             "panier" => "required",
             "ville" => "required|string",
             "user" => "integer|required",

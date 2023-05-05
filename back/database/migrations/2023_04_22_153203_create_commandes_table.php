@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('status')->default("En cour");
             $table->string('adresse_livraison');
             $table->integer('numero');
-            $table->float('longitude');
-            $table->float('latitude');
+            $table->string('ville');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

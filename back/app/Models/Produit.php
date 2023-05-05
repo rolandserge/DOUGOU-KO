@@ -14,7 +14,7 @@ class Produit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price', 'top', 'stock', 'reduction', 'description', 'categorie_id'];
+    protected $fillable = ['name', 'price', 'top', 'stock','image', 'status', 'reduction', 'description', 'categorie_id'];
 
     /**
      * Get the user that owns the Produit

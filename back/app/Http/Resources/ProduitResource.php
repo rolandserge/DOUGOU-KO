@@ -25,9 +25,10 @@ class ProduitResource extends JsonResource
             "top" => $this->top,
             "stock" => $this->stock,
             "reduction" => $this->reduction,
+            "image" => $this->image,
             "description" => $this->description,
             "categorie" => new CategorieResource($this->categorie),
-            "image" => ImageResource::collection($this->whenLoaded('images'))
+            "images" => ImageResource::collection($this->whenLoaded('images'))
         ];
     }
 }

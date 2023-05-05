@@ -1,22 +1,28 @@
 import React from 'react';
 import AdminLayout from '../../../../Layouts/AdminLayout';
-import { AiOutlineDelete } from "react-icons/ai"
-import { CiEdit, CiSearch } from 'react-icons/ci'
+import { CiSearch } from 'react-icons/ci'
 import { Table, TextInput } from '@mantine/core';
 import { HiEye } from "react-icons/hi"
 import axios from 'axios';
+import Loading from '../../../../Component/Loading';
+import { useRouter } from "next/router"
+import moment from "moment"
+import "moment/locale/fr"
 
 const index = ({commandes}) => {
+
+     const router = useRouter()
 
      const rows = commandes.map((commande, index) => (
           <tr key={index}>
             <td>{commande.numero}</td>
             <td>{commande.totaux.toLocaleString("fr-FR") + " FCFA"}</td>
             <td>{commande.adresse}</td>
-            <td>{commande.date}</td>
-            <td>{commande.status}</td>
+            <td>{moment(commande.date_commande).locale("fr").calendar()}</td>
+            <td>{moment(commande.date_livraison).locale("fr").calendar()}</td>
+            <td><p className={commande.status === "Livrer" ? "livrer" : "cour"}>{commande.status}</p></td>
             <td>{commande.payement}</td>
-            <td><HiEye /></td>
+            <td className='action' onClick={() => router.push(`/Admin/commande/${commande.id}`)}><span><HiEye /></span></td>
           </tr>
         ));
 
@@ -45,9 +51,10 @@ const index = ({commandes}) => {
                               <th>Totaux</th>
                               <th>adresse</th>
                               <th>Date de commande</th>
+                              <th>Date de livraison</th>
                               <th>Status</th>
                               <th>Mode de payement</th>
-                              <th colSpan={3}>Action</th>
+                              <th>Action</th>
                          </tr>
                     </thead>
                     <tbody>{rows}</tbody>

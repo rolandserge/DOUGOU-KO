@@ -13,6 +13,7 @@ import "../../Styles/Component/Admin/header.css"
 import "../../Styles/Component/Admin/Layout/layout.css"
 import '../../Styles/Component/Admin/Produit/index.css'
 import "../../Styles/Component/Admin/Commande/index.css"
+import "../../Styles/Component/Admin/Commande/produit.css"
 import { useEffect, useState } from 'react';
 import { CartProvider } from "react-use-cart"
 import store from "../../store"

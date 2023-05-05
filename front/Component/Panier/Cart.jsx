@@ -19,7 +19,7 @@ const Cart = ({item}) => {
      return (
           <div className="card_panier">
                <div className='image_produit'>
-                    <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.image[0].url}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.image[0].url}`} unoptimized={true} width={50} height={50} alt={item.image[0].name} priority className='image' />
+                    <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${item.image}`} unoptimized={true} width={50} height={50} alt={item.name} priority className='image' />
                </div>
                <div className='detail_div'>
                     <div className='name_produit'>

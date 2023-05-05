@@ -13,38 +13,44 @@ class ProduitController extends Controller
 {
     public function index() {
 
-        $produits = Produit::where('stock','>=', 1)->orderBy('id', 'DESC')->with("images")->get();
+        $produits = Produit::where('stock','>=', 1)->orderBy('id', 'DESC')->get();
 
         return ProduitResource::collection($produits);
 
     }
 
     public function store(Request $request) {
-        
-        return response()->json([
-            'status' => 'success',
-        ]);
-        
+
+        if($request->hasFile('image')) {
+
+            $file = $request->file("image");
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move(public_path('uploads/produit/'), $filename);
+            $image = 'uploads/produit/'.$filename;
+        }
+
         $produit = Produit::create([
             "name" => $request->name,
             "price" => $request->price,
             "stock" => $request->stock,
             "top" => $request->top,
+            "image" => $image,
             "reduction" => $request->reduction,
             "description" => $request->description,
             "categorie_id" => $request->categorie
         ]);
-        
+
         $files = $request->file("images");
         $images = [];
 
         foreach($files as $file) {
-                
+
                 $extension = $file->getClientOriginalExtension();
-                $filename = time().rand(1,900000).'.'. $extension;
+                $filename = time().rand(1,90000).'.'. $extension;
                 $file->move(public_path('uploads/produit/'), $filename);
                 $image = 'uploads/produit/'.$filename;
-                
+
                 $images[] = [
                     'name' => $request->name,
                     "url" => $image,
@@ -53,11 +59,11 @@ class ProduitController extends Controller
         }
 
         $produit->images()->createMany($images);
-        
+
         return response()->json([
             'status' => 'success',
         ]);
-        
+
     }
 
     public function show($id) {
@@ -67,10 +73,6 @@ class ProduitController extends Controller
         if($produit) {
 
             return ProduitResource::collection($produit);
-            // return response()->json([
-            //     'status' => 404,
-            //     'message' => $produit
-            // ]);
 
         } else {
 

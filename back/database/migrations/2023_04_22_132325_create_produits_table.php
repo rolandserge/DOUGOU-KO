@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer("price");
             $table->boolean('top')->default(false);
             $table->integer('stock');
+            $table->string('image');
             $table->integer('reduction');
             $table->text('description');
             $table->foreignId('categorie_id')->constrained()->onDelete('cascade');

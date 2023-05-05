@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 import React from 'react';
 import Header from '../Component/Admin/Header';
 import { RxDashboard } from "react-icons/rx"
@@ -7,50 +8,54 @@ import { BiCollection, BiArchive } from "react-icons/bi"
 
 const AdminLayout = ({children}) => {
 
+     const router = useRouter()
+
+     const dashbord = [
+          {
+               icone: <RxDashboard />,
+               nom: "Tableau de bord",
+               lien: "/Admin"
+          },
+          {
+               icone:  <BiArchive />,
+               nom: "Commandes",
+               lien: "/Admin/commande"
+          },
+          {
+               icone: <BiCollection />,
+               nom: "Categories",
+               lien: "/Admin/categorie"
+          },
+          {
+               icone: <HiOutlineCube />,
+               nom: "Produits",
+               lien: "/Admin/produit"
+          },
+          {
+               
+               icone: <HiOutlineUsers />,
+               nom: "Utilisateurs",
+               lien: "/Admin/utilisateur"
+          }
+     ]
+
      return (
           <>
                <Header />
                <div className="admin_layout_page">
                     <aside>
-                         <Link href="/Admin" className='elements active'>
-                              <div className="icone">
-                                   <RxDashboard />
-                              </div>
-                              <div className='titre'>
-                                   <p>Tableau de bord</p>
-                              </div>
-                         </Link>
-                         <Link href="/Admin/commande" className='elements'>
-                              <div className="icone">
-                                   <BiArchive />
-                              </div>
-                              <div className='titre'>
-                                   <p>Commandes</p>
-                              </div>
-                         </Link>
-                         <Link href="/Admin/categorie" className='elements'>
-                              <div className="icone">
-                                   <BiCollection />
-                              </div>
-                              <div className='titre'>
-                                   <p>Categories</p>
-                              </div>
-                         </Link>
-                         <Link href="/Admin/produit" className='elements'>
-                              <div className="icone">
-                                   <HiOutlineCube />
-                              </div>
-                              <div className='titre'>
-                                   <p>Produits</p>
-                              </div>
-                         </Link> <Link href="#" className='elements'>
-                              <div className="icone">
-                                   <HiOutlineUsers />
-                              </div>
-                              <div className='titre'>
-                                   <p>Utilisateurs</p>
-                              </div>
-                         </Link>
+                         {
+                              dashbord.map((element, index) => (
+                                   <Link href={element.lien} key={index} className={router.pathname === element.lien ? "elements active" : "elements"}>
+                                        <div className="icone">
+                                             {element.icone}
+                                        </div>
+                                        <div className='titre'>
+                                             <p>{element.nom}</p>
+                                        </div>
+                                   </Link>
+                              ))
+                         }
                     </aside>
                     <div className="contenu_page_admin">
                          <div className="page_contenu">
