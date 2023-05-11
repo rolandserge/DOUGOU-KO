@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useCart } from "react-use-cart";
+import { useRouter } from 'next/router';
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { MdOutlineKeyboardBackspace } from "react-icons/md"
 
-const Nav = ({titre, retour}) => {
+const Nav = ({titre}) => {
 
      const { totalItems } = useCart();
      const [monted, setMonted] = useState(false)
+
+     const router = useRouter()
 
      useEffect(() => {
 
@@ -17,7 +20,7 @@ const Nav = ({titre, retour}) => {
      return (
           <div className='nav_unique'>
                <div className='detail_nav'>
-                    <Link href={retour} className='retour'>
+                    <Link href="#" onClick={() => router.back()} className='retour'>
                          <MdOutlineKeyboardBackspace />
                     </Link>
                     <div className='titre'>

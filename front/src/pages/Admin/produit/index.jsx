@@ -20,11 +20,11 @@ const index = ({produits}) => {
             <td>{produit.name}</td>
             <td>{produit.price.toLocaleString("fr-FR") + " FCFA"}</td> 
             <td>{produit.stock}</td>
-            <td>{produit.status}</td>
+            <td><p className={produit.status === "active" ? "livrer" : "cour"}>{produit.status}</p></td>
             <td>{produit.categorie.name}</td>
-            <td><HiEye /></td>
-            <td><AiOutlineDelete /></td>
-            <td><CiEdit /></td>
+            <td className="action"><span><HiEye /></span></td>
+            <td className="action"><span><AiOutlineDelete /></span></td>
+            <td className="action"><span><CiEdit /></span></td>
           </tr>
         ));
           if(!produits) {

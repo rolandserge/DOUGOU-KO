@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
 use App\Models\Image;
 use App\Models\Panier;
 use App\Models\Produit;
 use App\Models\Commande;
+use App\Jobs\CommandeJobs;
+use App\Mail\MailCommande;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CommandeRequest;
 use App\Http\Resources\PanierResource;
 use App\Http\Resources\CommandeResource;
@@ -30,11 +34,8 @@ class CommandeController extends Controller
             "adresse_livraison" => $request->adresse,
             "numero" => $request->numero,
             "ville" => $request->ville,
-            "longitude" => -3.9368538,
-            "latitude" => 5.3708667,
             "user_id" => $request->user
         ]);
-
 
         $paniers[] = $request->panier;
         $produits = [];
@@ -56,7 +57,13 @@ class CommandeController extends Controller
             $produit[0]->update();
         }
 
-        $commande->paniers()->createMany($produits);
+        $user_commande = User::where('id', $request->user)->get();
+        $user = $user_commande[0];
+        
+        $element = $commande->paniers()->createMany($produits);
+        $elements = $element[0];
+
+        dispatch(new CommandeJobs($user, $commande, $elements));
 
         return response()->json([
            'status' => 200,
@@ -84,6 +91,7 @@ class CommandeController extends Controller
         $commande = Commande::find($id);
 
         $commande->status = $request->status;
+        $commande->date_livraison = $request->date;
 
         $commande->update();
 

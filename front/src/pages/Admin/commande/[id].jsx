@@ -134,7 +134,7 @@ export async function ProduitsCommande(id) {
 export async function getStaticProps({params}) {
      // code
      const res = await ProduitsCommande(params.id)
-     console.log(res)
+
      return {
           props: {
                produits: res.data.data,

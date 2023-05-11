@@ -13,9 +13,31 @@ const Categories = () => {
      return (
           <section className='categorie_cards_slider'>
                 <Swiper
-                    spaceBetween={5}
-                    slidesPerView={3.5}
 
+                         spaceBetween={5}
+                         slidesPerView={3.5}
+                         // Responsive breakpoints
+                         breakpoints={{
+                         // when window width is >= 320px
+                         // 320: {
+                         // slidesPerView: 3.5,
+                         // // spaceBetween: 20
+                         // },
+                         // // when window width is >= 480px
+                         400: {
+                              slidesPerView: 3.5,
+                              // spaceBetween: 30
+                         },
+                         // // when window width is >= 640px
+                         // 640: {
+                         //      slidesPerView: 4.5,
+                         //      // spaceBetween: 40
+                         // },
+                         1200: {
+                              slidesPerView: 6.5,
+                              // spaceBetween: 20
+                         }
+                    }}
                >
                     <SwiperSlide>
                          <Link href={`/Produit?categorie=1`} className='card_slider'>

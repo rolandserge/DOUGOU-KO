@@ -3,12 +3,20 @@ import React from 'react';
 import { HiOutlineShoppingBag } from "react-icons/hi"
 import { AiOutlineHeart } from "react-icons/ai"
 import { useCart } from "react-use-cart";
+import { useSnackbar } from 'notistack';
 import Link from 'next/link';
 
 
 const CardVente = ({produit}) => {
 
      const { addItem } = useCart();
+     const { enqueueSnackbar } = useSnackbar()
+
+     const AddCart = (produit) => {
+
+          addItem(produit)
+          enqueueSnackbar('Produit ajouter au panier', {variant: "success"})
+     }
 
      return (
           <>
@@ -30,7 +38,7 @@ const CardVente = ({produit}) => {
                          </div>
                          <div className='price_cart'>
                               <Link href={`/Produit/${produit.id}`} className='price'>{(produit.price).toLocaleString("fr-FR")} FCFA</Link>
-                              <div className='add_cart' onClick={() => addItem(produit)}>
+                              <div className='add_cart' onClick={() => AddCart(produit)}>
                                    <HiOutlineShoppingBag />
                               </div>
                          </div>

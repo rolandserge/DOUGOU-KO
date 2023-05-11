@@ -26,10 +26,10 @@ const index = ({produits}) => {
           dispatch(ProduitCategories(categorie))
           setActive(categorie)
           setCheck(false)
-          if(categorie == 1) {
+          if(categorie == "tous") {
                setData(produits)
           } else {
-               const filter = produits.filter((x) => x.categorie.id == categorie)
+               const filter = produits.filter((x) => x.categorie.name === categorie)
                setData(filter)
           }
      }
@@ -57,7 +57,10 @@ const index = ({produits}) => {
                return 'simple'
           }
      }
+     if(!produits || !categories) {
 
+          return <><Loading /></>
+     }
      return (
           <>
           <Nav titre="Listes des produits" retour="/"/>
@@ -74,6 +77,24 @@ const index = ({produits}) => {
                     <Swiper
                          spaceBetween={8}
                          slidesPerView={2.5}
+                         breakpoints={{
+                              // when window width is >= 320px
+                              // 320: {
+                              // slidesPerView: 3.5,
+                              // // spaceBetween: 20
+                              // },
+                              // // when window width is >= 480px
+                            
+                              // // when window width is >= 640px
+                              // 640: {
+                              //      slidesPerView: 4.5,
+                              //      // spaceBetween: 40
+                              // },
+                              1200: {
+                                   slidesPerView: 6.5,
+                                   // spaceBetween: 20
+                              }
+                         }}
                     >
                           <SwiperSlide>
                               <button className={ChangeClasse(1)} onClick={() => FilterCategorie(1)}>{'Tous'}</button>

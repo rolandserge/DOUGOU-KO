@@ -14,7 +14,7 @@
      height: 100%;
      width: 100%;
      z-index: 1;
-     background: rgb(0, 0, 0, 0.6);
+     background: rgb(0, 0, 0, 0.5);
 }
 .produits_pages .accroche .text {
      position: relative;
@@ -151,4 +151,47 @@
      background: black;
      color: white;
      border-radius: 3px;
+}
+
+@media screen and (min-width: 1200px) {
+
+     /* header image */
+     .produits_pages {
+          padding-top: 3.4em;
+     }
+     .produits_pages .accroche {
+          height: 55vh;
+          
+     }
+
+
+     /* catgerorie style code */
+     .produits_pages .categories_all {
+          height: 12vh;
+     }
+     .produits_pages .categories_all button {
+          border: 1px solid;
+          border-radius: 50px;
+          padding: 0.5em 0;
+          width: 100%;
+          cursor: pointer;
+          background: white;
+     }
+
+
+
+     /* produit style code */
+     .card_produit_all {
+          height: 42vh;
+          width: 20%;
+     }
+     .card_produit_all .container_header .favoris {
+          top: -10em;
+          width: 8%;
+          height: 3vh;
+          left: -7.5em;
+     }
+     .card_produit_all .container_detail .name_product p {
+          font-size: 1em;
+     }
 }

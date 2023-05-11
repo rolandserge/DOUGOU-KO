@@ -38,7 +38,7 @@ const ProductCard = ({produit}) => {
                     </div>
                     <Link href={`/Produit/${produit.id}`} className='name_product'>
                          <p>{produit?.name}</p>
-                    </Link>
+                    </Link> 
                     <div className='fake_div'>
                          <Link href={`/Produit/${produit.id}`} className='fake'>{ produit?.price + produit?.reduction + " FCFA"}</Link>
                     </div>

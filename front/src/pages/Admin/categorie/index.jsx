@@ -16,9 +16,9 @@ const index = ({categories}) => {
                <td>{categorie.id}</td>
                <td><Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${categorie.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${categorie.image}`} width={50} height={50} unoptimized={true} priority={true} alt={categorie.name} /></td>
                <td>{categorie.name}</td>
-               <td><HiEye /></td>
-               <td><AiOutlineDelete /></td>
-               <td><CiEdit /></td>
+               <td className="action"><span><HiEye /></span></td>
+               <td className="action"><span><CiEdit /></span></td>
+               <td className="action"><span><AiOutlineDelete /></span></td>
           </tr>
         ));
           if(!categories) {

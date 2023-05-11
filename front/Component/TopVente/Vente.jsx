@@ -18,7 +18,7 @@ const Vente = () => {
                </div>
                <div className='vente_produit'>
                     <Carousel
-                         slideSize="25%"
+                         slideSize="20%"
                          slideGap="md"
                          loop
                          align="start"
@@ -29,7 +29,7 @@ const Vente = () => {
                     >
                          {
                               produits?.filter(x => x.top == 1).map((produit, index) => (
-                                   <Carousel.Slide>
+                                   <Carousel.Slide key={index}>
                                         <CardVente produit={produit} key={index}/>
                                    </Carousel.Slide>
                               ))

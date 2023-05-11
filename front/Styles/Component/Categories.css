@@ -1,5 +1,5 @@
 .categorie_cards_slider {
-     margin: 0.7em 0;
+     margin: 1em 0;
 }
 
 .categorie_cards_slider .card_slider {
@@ -20,4 +20,15 @@
      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
      border-radius: 50%;
      width: 100%;
+     object-fit: cover;
+}
+
+
+@media screen and (min-width: 1200px) {
+
+     .categorie_cards_slider .card_slider .icone_categorie {
+          height: 9vh;
+          width: 30%;
+     }
+
 }

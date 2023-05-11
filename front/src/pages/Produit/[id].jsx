@@ -1,16 +1,16 @@
-import React, { useEffect, useState  } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
+import { useViewportSize } from '@mantine/hooks';
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { AiOutlineHeart, AiOutlineStar } from "react-icons/ai"
+import { AiOutlineHeart } from "react-icons/ai"
 import { useCart } from "react-use-cart";
 import { HiOutlineShoppingBag } from "react-icons/hi"
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import Nav from '../../../Layouts/Nav';
 import Loading from '../../../Component/Loading';
@@ -21,116 +21,137 @@ import CardVente from '../../../Component/TopVente/CardVente';
 
 const ProdutId = ({produit, produits}) => {
 
-     const { addItem, inCart, items, updateItemQuantity } = useCart();
+     const { addItem, items, updateItemQuantity } = useCart();
 
      const [thumbsSwiper, setThumbsSwiper] = useState(null);
-     
-     const router = useRouter()
 
      const { enqueueSnackbar } = useSnackbar();
      const itemInCart = items.filter((i) => i.id == produit.id);
-
-     useEffect(() => {
-
-     }, [])
 
      const addCart = (produit) => {
           addItem(produit)
           enqueueSnackbar("Produit ajouter au panier", { variant: "success" })
      }
+     
+     const { height, width } = useViewportSize();
+
      return (
           <>
-          <Nav titre='Detail du produit' retour="/Produit?categorie=1" />
+          {
+               width <= 1200 ?
+                    <Nav titre='Detail du produit'/>
+               :
+               <>Mon test de header</>
+          }       
+
          <section className='container_detail_produit'>
                <article>
                     {
                          produit.length == 0 ? <Loading /> : 
                          <>
                               <div className="contenu">
-                                   <div className="image_du_produit_div">
-                                        <div className='card_image'>
-                                             <Swiper
-                                                  style={{
-                                                       "--swiper-navigation-color": "#fff",
-                                                       "--swiper-pagination-color": "#fff",
-                                                       "--swiper-navigation-size": "1.8em",
-                                                  }}
-                                                  spaceBetween={10}
-                                                  navigation={true}
-                                                  thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
-                                                  modules={[FreeMode, Navigation, Thumbs]}
-                                                  className="mySwiper2"
-                                                  >
-                                                        <SwiperSlide>
-                                                            <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} unoptimized={true} className='image' width={0} height={0} alt={produit.name} priority />
-                                                       </SwiperSlide>
+                                   <div className="large_div_detail">
+                                        <div className="image_du_produit_div">
+                                             <div className='card_image'>
+                                                  <Swiper
+                                                       style={{
+                                                            "--swiper-navigation-color": "#fff",
+                                                            "--swiper-pagination-color": "#fff",
+                                                            "--swiper-navigation-size": "1.8em",
+                                                       }}
+                                                       spaceBetween={10}
+                                                       navigation={true}
+                                                       thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
+                                                       modules={[FreeMode, Navigation, Thumbs]}
+                                                       className="mySwiper2"
+                                                       >
+                                                            <SwiperSlide>
+                                                                 <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} unoptimized={true} className='image' width={0} height={0} alt={produit.name} priority />
+                                                            </SwiperSlide>
+                                                            {
+                                                                 produit.images.map((image, index) => (
+
+                                                                      <SwiperSlide key={index}>
+                                                                           <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} unoptimized={true} className='image' width={0} height={0} alt={image.name} priority />
+                                                                      </SwiperSlide>
+                                                                 ))
+                                                            }
+                                                  </Swiper>
+                                                  <div className='favoris'>
+                                                       <AiOutlineHeart />
+                                                  </div>
+                                             </div>
+                                             <div className='sous_image'>     
+                                                  <Swiper
+                                                       onSwiper={setThumbsSwiper}
+                                                       spaceBetween={8}
+                                                       slidesPerView={4.5}
+                                                       freeMode={true}
+                                                       watchSlidesProgress={true}
+                                                       modules={[FreeMode, Navigation, Thumbs]}
+                                                       className="mySwiper"
+                                                       >
+                                                            <SwiperSlide>
+                                                                 <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} unoptimized={true} className='image' width={0} height={0} alt={produit.name} priority />
+                                                            </SwiperSlide>
+                                                            {
+                                                                 produit.images.map((image, index) => (
+
+                                                                      <SwiperSlide key={index}>
+                                                                           <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} unoptimized={true} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} className='image' width={100} height={100} alt={image.name} priority />
+                                                                      </SwiperSlide>
+                                                                 ))
+                                                            }
+                                                  </Swiper>
+                                             </div>
+                                        </div>
+                                        <div className='detail_produit'>
+                                             <div className='element_div'>
+                                                  <div className='nom_eval'>
+                                                       <p>{produit.name} </p>
+                                                  </div>
+                                                  <div className='categorie'>
+                                                       <p>{produit.categorie.name}</p>
+                                                  </div>
+                                             </div>
+                                             <div className='element_price'>
+                                                  <div className='price_div'>
+                                                       <span>{(produit.price).toLocaleString("fr-FR")} FCFA</span>
+                                                       <span className='reduction'>{(produit.price + produit.reduction).toLocaleString("fr-FR") + " FCFA"}</span>
+                                                  </div>
+                                                  <div className='action_div'>
                                                        {
-                                                            produit.images.map((image, index) => (
-
-                                                                 <SwiperSlide key={index}>
-                                                                      <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} unoptimized={true} className='image' width={0} height={0} alt={image.name} priority />
-                                                                 </SwiperSlide>
-                                                            ))
+                                                            itemInCart.length >= 1 && <>
+                                                                 <button onClick={() => updateItemQuantity(itemInCart[0]?.id, itemInCart[0].quantity - 1)}>-</button>
+                                                                 <span>{itemInCart[0]?.quantity}</span>
+                                                                 <button onClick={() => updateItemQuantity(itemInCart[0]?.id, itemInCart[0].quantity + 1)}>+</button>
+                                                            </>
                                                        }
-                                             </Swiper>
-                                             <div className='favoris'>
-                                                  <AiOutlineHeart />
+                                                  </div>
                                              </div>
-                                        </div>
-                                        <div className='sous_image'>     
-                                             <Swiper
-                                                  onSwiper={setThumbsSwiper}
-                                                  spaceBetween={8}
-                                                  slidesPerView={4}
-                                                  freeMode={true}
-                                                  watchSlidesProgress={true}
-                                                  modules={[FreeMode, Navigation, Thumbs]}
-                                                  className="mySwiper"
-                                                  >
-                                                        <SwiperSlide>
-                                                            <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${produit.image}`} unoptimized={true} className='image' width={0} height={0} alt={produit.name} priority />
-                                                       </SwiperSlide>
-                                                        {
-                                                            produit.images.map((image, index) => (
-
-                                                                 <SwiperSlide key={index}>
-                                                                      <Image loader={() => `${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} unoptimized={true} src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${image.url}`} className='image' width={100} height={100} alt={image.name} priority />
-                                                                 </SwiperSlide>
-                                                            ))
-                                                       }
-                                             </Swiper>
-                                        </div>
-                                   </div>
-                                   <div className='detail_produit'>
-                                        <div className='element_div'>
-                                             <div className='nom_eval'>
-                                                  <p>{produit.name} </p>
-                                             </div>
-                                             <div className='categorie'>
-                                                  <p>{produit.categorie.name}</p>
-                                             </div>
-                                        </div>
-                                        <div className='element_price'>
-                                             <div className='price_div'>
-                                                  <span>{(produit.price).toLocaleString("fr-FR")} FCFA</span>
-                                                  <span className='reduction'>{(produit.price + produit.reduction).toLocaleString("fr-FR") + " FCFA"}</span>
-                                             </div>
-                                             <div className='action_div'>
-                                                  {
-                                                       itemInCart.length >= 1 && <>
-                                                            <button onClick={() => updateItemQuantity(itemInCart[0]?.id, itemInCart[0].quantity - 1)}>-</button>
-                                                            <span>{itemInCart[0]?.quantity}</span>
-                                                            <button onClick={() => updateItemQuantity(itemInCart[0]?.id, itemInCart[0].quantity + 1)}>+</button>
-                                                       </>
-                                                  }
-                                             </div>
-                                        </div>
-                                        <div className='description_produit'>
-                                             <p>Description</p>
-                                             <div>
-                                                 {
-                                                  produit.description
-                                                 }
+                                             {
+                                                   width >= 1200 && 
+                                                       <div className='ajout_panier'>
+                                                            {
+                                                            itemInCart.length >= 1 ? 
+                                                                 <Link href="/Panier" className='add_cart voir'>
+                                                                      <HiOutlineShoppingBag />
+                                                                      <span>Voir mon panier</span>
+                                                                 </Link>
+                                                            :
+                                                                 <button className='add_cart' onClick={() => addCart(produit)}>
+                                                                      <HiOutlineShoppingBag />
+                                                                      <span>Ajouter au panier</span>
+                                                                 </button>
+                                                            }
+                                                       </div>
+                                             }
+                                             <div className='description_produit'>
+                                                  <p>Description</p>
+                                                  <div>
+                                                       {
+                                                            produit.description
+                                                       }                                                  </div>
                                              </div>
                                         </div>
                                    </div>
@@ -140,7 +161,7 @@ const ProdutId = ({produit, produits}) => {
                                         </div>
                                         <div className='slider_prod'>                                       
                                              <Carousel
-                                                  slideSize="25%"
+                                                  slideSize="22%"
                                                   slideGap="md"
                                                   loop
                                                   align="start"
@@ -151,7 +172,7 @@ const ProdutId = ({produit, produits}) => {
                                              >
                                                   {
                                                        produits.filter(x => x.categorie.id == produit.categorie.id).map((produit, index) => (
-                                                            <Carousel.Slide>
+                                                            <Carousel.Slide key={index}>
                                                                  <CardVente produit={produit} key={index}/>
                                                             </Carousel.Slide>
                                                        ))
@@ -163,25 +184,28 @@ const ProdutId = ({produit, produits}) => {
                          </>
                     }
                </article>
-               <div className="add_produit">
-                    {
-                         produit.length == 0 ? "" : 
-                         <>
-                             {
-                                   itemInCart.length >= 1 ? 
-                                        <Link href="/Panier" className='add_cart'>
-                                             <HiOutlineShoppingBag />
-                                             <span>Voir mon panier</span>
-                                        </Link>
-                                   :
-                                        <button className='add_cart' onClick={() => addCart(produit)}>
-                                             <HiOutlineShoppingBag />
-                                             <span>Ajouter au panier</span>
-                                        </button>
-                             }
-                         </>
-                    }
-               </div>
+               {
+                    width <= 1200 && 
+                         <div className="add_produit">
+                              {
+                                   produit.length == 0 ? "" : 
+                                   <>
+                                   {
+                                             itemInCart.length >= 1 ? 
+                                                  <Link href="/Panier" className='add_cart'>
+                                                       <HiOutlineShoppingBag />
+                                                       <span>Voir mon panier</span>
+                                                  </Link>
+                                             :
+                                                  <button className='add_cart' onClick={() => addCart(produit)}>
+                                                       <HiOutlineShoppingBag />
+                                                       <span>Ajouter au panier</span>
+                                                  </button>
+                                   }
+                                   </>
+                              }
+                         </div>
+               }
          </section>
          </>
      );

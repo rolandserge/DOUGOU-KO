@@ -11,3 +11,19 @@
      height: 100%;
      width: 100%;
 }
+
+@media screen and (min-width: 1200px) { 
+     .container_banner {
+          height: 50vh;
+          overflow: hidden;
+     }
+     .container_banner .card_slider {
+          height: 50vh;
+          width: 100%;
+     }
+     .container_banner .card_slider .banner {
+          height: 100%;
+          width: 100%;
+          object-fit: fill;
+     }
+}

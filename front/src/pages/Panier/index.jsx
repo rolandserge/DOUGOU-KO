@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useCart } from "react-use-cart";
 import Cart from '../../../Component/Panier/Cart';
 import Nav from '../../../Layouts/Nav';
-import { Radio,InputBase } from '@mantine/core';
+import { Radio, InputBase, Textarea } from '@mantine/core';
 import { IMaskInput } from 'react-imask';
 import Livraison from "../../../Assets/courrier-de-livraison.png"
 import Ligne from "../../../Assets/achats-en-ligne.png"
@@ -20,7 +20,7 @@ const index = () => {
      const { isEmpty ,cartTotal, items } = useCart();
      const { user } = useAuth()
      const dispatch = useDispatch()
-     const adresseRef = useRef()
+     const [adresse, setAdresse] = useState()
      const payeRef = useRef()
      const numeroRef = useRef()
      const router = useRouter()
@@ -36,8 +36,6 @@ const index = () => {
 
                router.push("/Auth/login")
           }
-
-          const adresse = adresseRef.current.value
           const paye = payeRef.current.value
           const numero = numeroRef.current.maskRef.value
           const ville = villeRef.current.value
@@ -52,51 +50,56 @@ const index = () => {
 
      return (
           <>
-          <Nav titre='Votre panier' retour="/Produit?categorie=1" />
+          <Nav titre='Votre panier'/>
 
           {
                isEmpty ? <PanierVide /> :
                <section className='container_panier'>
+                         <div className='index'>
+                              <p>Mon panier</p>
+                         </div>
                          <div className="contenu_panier">
-                              <div className="cards_paniers">
-                                   {
-                                        items.map((item, index) => (
+                              <div className="large_ecran">
+                                   <div className="cards_paniers">
+                                        {
+                                             items.map((item, index) => (
 
-                                             <Cart item={item} key={index} />
-                                        ))
-                                   }
-                              </div>
-                              <div className='totaux_card'>
-                                   <div className='titre'>
-                                        <p>Resumé du Panier</p>
+                                                  <Cart item={item} key={index} />
+                                             ))
+                                        }
                                    </div>
-                                   <div className='sous_total'>
-                                        <div>
-                                             <p>Sous total</p>
+                                   <div className='totaux_card'>
+                                        <div className='titre'>
+                                             <p>Resumé du Panier</p>
                                         </div>
-                                        <div>
-                                             <span>{cartTotal.toLocaleString("fr-FR")} FCFA</span>
+                                        <div className='sous_total'>
+                                             <div>
+                                                  <p>Sous total</p>
+                                             </div>
+                                             <div>
+                                                  <span>{cartTotal.toLocaleString("fr-FR")} FCFA</span>
+                                             </div>
                                         </div>
-                                   </div>
-                                   <div className='sous_total'>
-                                        <div>
-                                             <p>Livraison</p>
+                                        <div className='sous_total'>
+                                             <div>
+                                                  <p>Livraison</p>
+                                             </div>
+                                             <div>
+                                                  <span>Gratuite</span>
+                                             </div>
                                         </div>
-                                        <div>
-                                             <span>Gratuite</span>
-                                        </div>
-                                   </div>
-                                   <div className='totaux'>
-                                        <div>
-                                             <p>Prix total</p>
-                                        </div>
-                                        <div>
-                                             <span>{cartTotal.toLocaleString("fr-FR")} FCFA</span>
+                                        <div className='totaux'>
+                                             <div>
+                                                  <p>Prix total</p>
+                                             </div>
+                                             <div>
+                                                  <span>{cartTotal.toLocaleString("fr-FR")} FCFA</span>
+                                             </div>
                                         </div>
                                    </div>
                               </div>
                               <div className="livraison_containers">
-                                   <div onClick={open}>
+                                   <div className='head_livraison'>
                                         <p>Informations de Livraisons</p>
                                    </div>
                                    <div className='formulaire'>
@@ -111,14 +114,20 @@ const index = () => {
                                                   </InputBase>
                                              </div>
                                              <div className='form'>
-                                                  <label htmlFor="">Adresse de livraison</label>
-                                                  <input type="text" required ref={adresseRef} name="" id="" />
+                                                  <Textarea
+                                                       placeholder="Entrer votre adresse de livraison"
+                                                       label="Entrer votre adresse de livraison"
+                                                       autosize
+                                                       m="0.5em 0"
+                                                       value={adresse} onChange={(event) => setAdresse(event.currentTarget.value)}
+                                                       minRows={2}
+                                                  />
                                              </div>
                                              <div >
+                                                  <label htmlFor="">Choissisez votre moyen de paiement</label>
                                                   <Radio.Group
                                                        value={value}
                                                        onChange={setValue}
-                                                       label="Choissisez votre moyen de payement"
                                                        mt={10}
                                                        mb={30}
                                                        className='payement'

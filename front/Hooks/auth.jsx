@@ -27,7 +27,7 @@ export const useAuth = ({ middleware } = {}) => {
       .post("/api/login", props)
       .then((response) => {
         if (response.data.status == 200) {
-          router.push("/");
+            router.back()
         } else if (response.data.status == 401) {
           console.log(response.data.message);
         }
@@ -66,7 +66,7 @@ export const useAuth = ({ middleware } = {}) => {
     if (user || error) {
       setIsLoading(false);
     }
-    if (middleware === "guest" && user) router.push("/");
+    if (middleware === "guest" && user) router.back();
     if (middleware === "auth" && !user && error) router.push(`/Auth/login`);
   }, [user, error]);
 

@@ -1,13 +1,18 @@
 .container_recap {
      padding-top: 5em;
+     background: #f6f6f6;
 }
-
+.container_recap .indicatif {
+     margin: 1em;
+}
 .container_recap .card_panier {
      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-     margin: 0.5em;
+     margin: 0.5em 1em;
      display: flex;
      justify-content: space-around;
      padding: 0.2em;
+     background: white;
+     border-radius: 4px;
      height: 12vh;
 }
 .container_recap .card_panier .image_produit {
@@ -16,6 +21,7 @@
 .container_recap .card_panier .image_produit .image {
      height: 100%;
      width: 100%;
+     object-fit: cover;
 }
 .container_recap .card_panier .detail_div {
      width: 72%;
@@ -46,15 +52,17 @@
 /* detail livraison */
 
 .container_recap .infos_livraison {
-     margin: 0.5em;
+     margin: 0.5em 1em;
 }
 .container_recap .infos_livraison .head {
      margin-bottom: 0.5em;
+     border-bottom: 1px solid
 }
 .container_recap .infos_livraison .card_livraison {
      padding: 0.5em;
      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
      border-radius: 4px;
+     background: white;
 }
 .container_recap .infos_livraison .card_livraison .card {
      display: flex;
@@ -72,7 +80,8 @@
 
 .container_recap .totaux_card {
      margin: 1em;
-     padding: 0.5em;
+     padding: 0.5em 0.5em 0 0.5em;
+     background: white;
      border-radius: 4px;
      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
@@ -112,7 +121,8 @@
      background: #034917;
      color: white;
      border: none;
-     border-radius: 50px;
+     width: 100%;
+     border-radius: 4px;
      cursor: pointer;
      padding: 0.8em 1em;
 }
@@ -151,7 +161,7 @@
 }
 .terminer .retour {
      background: #034917;
-     padding: 0.6em 1em;
+     padding: 0.8em 3.5em;
      border-radius: 50px;
      margin-top: 1em;
      
@@ -159,4 +169,82 @@
 .terminer .retour .link {
      text-decoration: none;
      color: white;
+}
+
+
+@media screen and (min-width: 1200px) {
+     
+     .container_recap .contenu_recap {
+          display: flex;
+          justify-content: center;
+     }
+     .container_recap .indicatif {
+          margin-left: 6em; 
+          font-size: 1.3em;
+     }
+     .container_recap .contenu_recap .recap {
+          width: 50%
+     }
+     .container_recap .card_panier {
+          height: 13vh;
+          margin: 0.5em 0;
+     }
+     .container_recap .card_panier .image_produit {
+          width: 15%;
+     }
+     .container_recap .card_panier .detail_div {
+          width: 80%;
+     }
+     .container_recap .card_panier .detail_div .name_produit {
+          font-size: 1em;
+          font-weight: bold;
+     }
+     .container_recap .card_panier .detail_div .price {
+          font-weight: bold;
+          font-size: 0.8em;
+          color: #930207;
+     }
+
+     
+     /* detail livraison */
+     .container_recap .information {
+          width: 30%;
+          margin: 0 0.5em;
+     }
+
+     .container_recap .infos_livraison .head {
+          margin-bottom: 0.5em;
+     }
+     .container_recap .infos_livraison .card_livraison {
+          padding: 0.5em 0.8em;
+     }
+     .container_recap .infos_livraison .card_livraison .card {
+          margin: 0.8em 0;
+     }
+     .container_recap .infos_livraison .card_livraison .card .tete {
+          width: 40%;
+     }
+     .container_recap .infos_livraison .card_livraison .card .infos {
+          text-align: left;
+     }
+
+     .container_recap .totaux_card {
+          margin: 1em 0.5em;
+          padding: 0.5em;
+     }
+     .container_recap .totaux_card .titre {
+          height: 5vh;
+     }
+     .container_recap .totaux_card .sous_total {
+          height: 6.3vh;
+     }
+     .container_recap .totaux_card .totaux {
+          height: 7vh;
+     }
+     .container_recap .terminer_button button {
+          font-size: 1em;
+     }
+     .container_recap .terminer_button button:hover {
+          opacity: 0.7;
+     }
 }

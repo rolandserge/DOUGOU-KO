@@ -11,6 +11,12 @@
      width: 100%;
 }
 
+@media screen and (min-width: 1200px) {
+     .publicité {
+          height: 40vh;
+     }
+}
+
 /* index code */
 main {
     min-height: 100vh; 

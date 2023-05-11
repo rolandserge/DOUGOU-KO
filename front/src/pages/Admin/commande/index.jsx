@@ -19,7 +19,7 @@ const index = ({commandes}) => {
             <td>{commande.totaux.toLocaleString("fr-FR") + " FCFA"}</td>
             <td>{commande.adresse}</td>
             <td>{moment(commande.date_commande).locale("fr").calendar()}</td>
-            <td>{moment(commande.date_livraison).locale("fr").calendar()}</td>
+            <td>{commande.date_livraison ? moment(commande.date_livraison).locale("fr").format("Do MMM YYYY") : commande.date_livraison}</td>
             <td><p className={commande.status === "Livrer" ? "livrer" : "cour"}>{commande.status}</p></td>
             <td>{commande.payement}</td>
             <td className='action' onClick={() => router.push(`/Admin/commande/${commande.id}`)}><span><HiEye /></span></td>

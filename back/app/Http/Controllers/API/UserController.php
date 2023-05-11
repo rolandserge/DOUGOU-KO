@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -32,9 +33,9 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
-            
+
             Auth::login($user);
-            
+
             return response()->json([
                 'status' => 200,
                 'message' => 'Personnel créee avec success'
@@ -60,7 +61,7 @@ class UserController extends Controller
         } else {
 
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                 
+
                 return response()->json([
                     'status' => 200,
                     'data' => Auth::user(),
@@ -75,6 +76,14 @@ class UserController extends Controller
                 ]);
             }
         }
+
+    }
+
+    public function utilisateurs() {
+
+        $utilisateurs = User::orderBy('id', "DESC")->get();
+
+        return UserResource::collection($utilisateurs);
 
     }
 

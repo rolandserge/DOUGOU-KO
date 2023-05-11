@@ -88,3 +88,17 @@
      color: white;
      border-radius: 3px;
 }
+
+@media screen and (min-width: 1200px) {
+     .card_produit {
+          height: 50vh;
+          width: 100%;
+     }
+     .card_produit .container_header .favoris {
+          top: 0.6em;
+          right: 1.5em;
+     }
+     .card_produit .container_detail .name_product p {
+          font-size: 1em;
+     }
+}

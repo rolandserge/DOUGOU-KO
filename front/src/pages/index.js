@@ -12,17 +12,17 @@ import { AllProduits } from '../../Reducer/produitReducer'
 import axios from 'axios'
 import Loading from '../../Component/Loading'
 
-export default function Home({produits}) {
-  const dispatch = useDispatch()
+export default function Home() {
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-      dispatch(AllProduits(produits))
-  }, [dispatch])
+  // useEffect(() => {
+  //     dispatch(AllProduits(produits))
+  // }, [dispatch])
 
-  if(!produits) {
+  // if(!produits) {
 
-    return <Loading />
-  }
+  //   return <Loading />
+  // }
   return (
     <>
       <Head>
@@ -49,20 +49,20 @@ export default function Home({produits}) {
   )
 }
 
-export async function loadProduits() {
+// export async function loadProduits() {
 
-  const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/produits`);
-  return response
-}
+//   const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/produits`);
+//   return response
+// }
 
-export async function getStaticProps() {
-  // code
-  const res  = await loadProduits()
-  const data = res.data.data
+// export async function getStaticProps() {
+//   // code
+//   const res  = await loadProduits()
+//   const data = res.data.data
 
-  return {
-    props: {
-        produits: data
-    },
-  }
-}
+//   return {
+//     props: {
+//         produits: data
+//     },
+//   }
+// }
