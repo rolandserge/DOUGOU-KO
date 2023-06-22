@@ -17,6 +17,7 @@ import Loading from '../../../Component/Loading';
 import axios from 'axios';
 import { Carousel } from '@mantine/carousel';
 import CardVente from '../../../Component/TopVente/CardVente';
+import Header from '../../../Component/Header';
 
 
 const ProdutId = ({produit, produits}) => {
@@ -33,17 +34,13 @@ const ProdutId = ({produit, produits}) => {
           enqueueSnackbar("Produit ajouter au panier", { variant: "success" })
      }
      
-     const { height, width } = useViewportSize();
+     const { width } = useViewportSize();
 
      return (
           <>
-          {
-               width <= 1200 ?
-                    <Nav titre='Detail du produit'/>
-               :
-               <>Mon test de header</>
-          }       
-
+   
+               <Header /> 
+               
          <section className='container_detail_produit'>
                <article>
                     {

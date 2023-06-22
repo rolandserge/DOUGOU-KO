@@ -1,15 +1,9 @@
 import React from 'react';
 import CardVente from './CardVente';
-import { useCart } from "react-use-cart";
 import { Carousel } from '@mantine/carousel';
-import useData from '../../Hooks/data';
 
 
-const Vente = () => {
-
-     const { addItem } = useCart();
-
-     const { produits } = useData()
+const Vente = ({produits}) => {
      
      return (
          <section className='top_vente'>

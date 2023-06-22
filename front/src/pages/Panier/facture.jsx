@@ -8,23 +8,27 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Loading from "../../../Component/Loading";
 import axiosAuth from "../../../Libs/axios";
+import { Button } from '@mantine/core';
+import { BiDish } from "react-icons/bi"
+import { useViewportSize } from '@mantine/hooks';
+import Header from "../../../Component/Header";
 
 const facture = () => {
 
   const { cartTotal, items, isEmpty, emptyCart } = useCart();
 
   const [mounted, setMounted] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth({ middleware: "auth" });
-
+  const { width } = useViewportSize();
   const { livraison } = useSelector((item) => item.livraison);
-
   const router = useRouter();
 
   var ladate = new Date();
 
   const Finish = async (e) => {
 
+    setLoading(true)
     e.preventDefault();
 
     try {
@@ -73,8 +77,8 @@ const facture = () => {
   }
 
   return (
-    <>
-          <Nav titre="Recupalitif de ma commande" />
+    <>  
+          <Header />
     
         <div className="container_recap">
             <div className="indicatif">
@@ -207,7 +211,7 @@ const facture = () => {
                       </div>
                     </div>
                     <div className="terminer_button" onClick={Finish}>
-                      <button>Valider votre commande</button>
+                      <Button loading={loading} compact leftIcon={<BiDish size="1.5em" />} loaderPosition='right'>Valider votre commande</Button>
                     </div>
                   </div>
             </div>

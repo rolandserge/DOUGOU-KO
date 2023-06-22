@@ -1,14 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 import ProductCard from './ProductCard';
-import { useSelector } from 'react-redux';
 
+const Produit = ({produits}) => {
 
-const Produit = () => {
-
-     const { produits } = useSelector((item) => item.produits)
-
-     
      return (
          <section className='container_produits'>
                <div className='head_produit'>
@@ -26,7 +21,7 @@ const Produit = () => {
                }
                </div>
                <div className='voir'>
-                    <Link href='/Produit?categorie=1' className='voirplus'>Voir tous les produits</Link>
+                    <Link href='/Produit?categorie=tous' className='voirplus'>Voir tous les produits</Link>
                </div>
          </section>
      );

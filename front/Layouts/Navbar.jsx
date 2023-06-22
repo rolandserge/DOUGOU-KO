@@ -34,11 +34,11 @@ const Navbar = () => {
                </Link>
                {
                     user ?
-                         <Link href='/' className="nav">
+                         <Link href='/Profil' className="nav">
                               <span>
                                    <AiOutlineUser />
                               </span>
-                              <p>Profile</p>
+                              <p>Mon compte</p>
                          </Link>
                     :
                          <Link href='/Auth/login' className="nav">

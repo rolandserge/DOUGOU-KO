@@ -1,15 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Logo from "../../../Assets/LogoDk.png"
 import Link from 'next/link';
 import Image from 'next/image';
-import { TextInput, PasswordInput, Checkbox, Anchor, Paper, Title, Text, Container, Group, Button } from '@mantine/core';
+import { TextInput, PasswordInput, Anchor, Paper, Title, Text, Container, Button } from '@mantine/core';
 import { useAuth } from '../../../Hooks/auth';
+import Loading from '../../../Component/Loading';
 
 
 const register = () => {
 
      const nomRef = useRef()
      const emailRef = useRef()
+     const [loading, setLoading] = useState(false)
      const passwordRef = useRef()
 
      const { register, isLoading, user } = useAuth({middleware : "guest"})
@@ -17,11 +19,17 @@ const register = () => {
 
      const registerFrom = async (e) => {
 
+          setLoading(true)
           e.preventDefault()
           const name = nomRef.current.value
           const email = emailRef.current.value
           const password = passwordRef.current.value
           register({name, email, password})
+     }
+
+     if(isLoading || user) {
+
+          return <><Loading /></>
      }
 
      return (
@@ -47,7 +55,7 @@ const register = () => {
                          <TextInput label="Nom" ref={nomRef} placeholder="Serge-Roland" required />
                          <TextInput label="Adresse E-mail" ref={emailRef} type='email' placeholder="sergeroland@gmail.com" required />
                          <PasswordInput label="Mot de passe" mih={6} ref={passwordRef} placeholder="Your password" required />
-                         <Button fullWidth mt="xl" type='submit'>
+                         <Button fullWidth mt="xl" type='submit' loading={loading} loaderPosition='right'>
                               S'inscrire
                          </Button>
                     </Paper>

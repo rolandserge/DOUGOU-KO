@@ -22,11 +22,12 @@ main {
     min-height: 100vh; 
     display: flex;
     flex-direction: column;
+    background: #f6f6f6;
 }
 main article {
      position: fixed;
      bottom: 0;
-     background: #f6f6f6;
+     background: white;
      width: 100%;
      height: 9vh;
 }

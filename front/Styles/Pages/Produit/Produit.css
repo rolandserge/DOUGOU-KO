@@ -1,5 +1,8 @@
 .produits_pages {
      padding-top: 4em;
+     background: #f6f6f6;
+     min-height: 100vh;
+     margin-bottom: 0.7em;
 }
 .produits_pages .accroche {
      background-image: url('../../../Assets/sacs.jpg');
@@ -39,9 +42,9 @@
      height: 8vh;
 }
 .produits_pages .categories_all button {
-     border: 1px solid;
      border-radius: 50px;
      padding: 0.5em 0;
+     border: none;
      width: 100%;
      cursor: pointer;
      background: white;
@@ -61,15 +64,16 @@
 
 /* card style code*/
 .card_produit_all {
-     height: 38vh;
+     height: 35vh;
      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
      width: 47%;
      border-radius: 4px;
      padding: 0.4em;
+     background: white;
      margin: 0.5em 0;
 }
 .card_produit_all .container_header {
-     height: 58%;
+     height: 60%;
 }
 .card_produit_all .container_header .favoris {
      position: relative;
@@ -99,11 +103,12 @@
 .card_produit_all .container_header .container_image .produit {
      width: 100%;
      height: 100%;
+     object-fit: fill;
 }
 
 
 .card_produit_all .container_detail {
-     height: 42%;
+     height: 40%;
      display: flex;
      margin-top: 0.3em;
      flex-direction: column;
@@ -121,7 +126,6 @@
 
 }
 .card_produit_all .container_detail .name_product {
-     /* margin: 0.5em 0.5em 0 0.5em; */
      text-decoration: none;
      color: black;
 }
@@ -157,11 +161,10 @@
 
      /* header image */
      .produits_pages {
-          padding-top: 3.4em;
+          padding-top: 4.2em;
      }
      .produits_pages .accroche {
           height: 55vh;
-          
      }
 
 
@@ -170,7 +173,7 @@
           height: 12vh;
      }
      .produits_pages .categories_all button {
-          border: 1px solid;
+          /* border: 1px solid; */
           border-radius: 50px;
           padding: 0.5em 0;
           width: 100%;
@@ -181,15 +184,21 @@
 
 
      /* produit style code */
+     .produit_all {
+          margin: 0 1em;
+     }
      .card_produit_all {
-          height: 42vh;
-          width: 20%;
+          height:50vh;
+          width: 21.5%;
      }
      .card_produit_all .container_header .favoris {
           top: -10em;
           width: 8%;
           height: 3vh;
           left: -7.5em;
+     }
+     .card_produit_all .container_detail {
+          padding: 0 0.3em;
      }
      .card_produit_all .container_detail .name_product p {
           font-size: 1em;

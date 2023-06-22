@@ -15,7 +15,7 @@ const PanierVide = () => {
                     <h3>Votre panier est vide</h3>
                </div>
                <div className='achat_div'>
-                    <Link href="/Produit?categorie=1" className='achat'>Faire des achats</Link>
+                    <Link href="/Produit?categorie=tous" className='achat'>Faire des achats</Link>
                </div>
           </div>
      );

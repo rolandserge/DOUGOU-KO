@@ -13,6 +13,7 @@
      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
      height: 35vh;
      width: 100%;
+     background: white;
      border-radius: 4px;
 }
 .card_produit .container_header {

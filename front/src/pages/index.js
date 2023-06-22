@@ -6,23 +6,18 @@ import Vente from '../../Component/TopVente/Vente'
 import Pub from '../../Component/Pub'
 import Produit from '../../Component/Produit/Produit'
 import Navbar from '../../Layouts/Navbar'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { AllProduits } from '../../Reducer/produitReducer'
+import { useViewportSize } from '@mantine/hooks';
 import axios from 'axios'
 import Loading from '../../Component/Loading'
 
-export default function Home() {
-  // const dispatch = useDispatch()
+export default function Home({produits, categories}) {
 
-  // useEffect(() => {
-  //     dispatch(AllProduits(produits))
-  // }, [dispatch])
+      if(!produits || !categories) {
 
-  // if(!produits) {
+        return <Loading />
+      }
+      const { width } = useViewportSize();
 
-  //   return <Loading />
-  // }
   return (
     <>
       <Head>
@@ -34,35 +29,44 @@ export default function Home() {
       <main>
         <section>
           <Header />
-          <Categories />
+          <Categories categories={categories} />
           <Banner />
-          <Vente />
+          <Vente produits={produits} />
           <Pub />
-          <Produit />
+          <Produit produits={produits} />
         </section>
-        <article>
-          <Navbar />
-        </article>
+        {
+          width <= 1200 && 
+            <article>
+              <Navbar />
+            </article>
+        }
       </main>
       
     </>
   )
 }
 
-// export async function loadProduits() {
+export async function loadProduits() {
 
-//   const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/produits`);
-//   return response
-// }
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/produits`);
+  return response
+}
 
-// export async function getStaticProps() {
-//   // code
-//   const res  = await loadProduits()
-//   const data = res.data.data
+export async function loadCategories() {
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories`);
+  return response
+}
 
-//   return {
-//     props: {
-//         produits: data
-//     },
-//   }
-// }
+export async function getStaticProps() {
+  // code
+  const res  = await loadProduits()
+  const cat = await loadCategories()
+
+  return {
+    props: {
+        produits: res.data.data,
+        categories: cat.data.data
+    },
+  }
+}

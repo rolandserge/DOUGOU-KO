@@ -19,6 +19,7 @@
 }
 .container_panier .contenu_panier .cards_paniers .card_panier .image_produit {
      width: 23%;
+     cursor: pointer;
 }
 .container_panier .contenu_panier .cards_paniers .card_panier .image_produit .image {
      height: 100%;
@@ -206,6 +207,18 @@
 }
 
 
+
+/* produits interessant div */
+.elements_interessant {
+     margin: 1em 0.5em;
+     background: white;
+     padding: 0.5em;
+}
+.elements_interessant .titre {
+     margin: 1em 0;
+     font-size: 1.15em;
+}
+
 @media screen and (min-width: 1200px) {
      .container_panier .index {
           margin-left: 6.5em;
@@ -329,5 +342,11 @@
           border-radius: 50px;
           cursor: pointer;
           background: #034917;
+     }
+
+     .elements_interessant {
+          margin: 1em 3em;
+          background: white;
+          padding: 1em;
      }
 }

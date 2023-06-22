@@ -8,16 +8,25 @@ import Livraison from "../../../Assets/courrier-de-livraison.png"
 import Ligne from "../../../Assets/achats-en-ligne.png"
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { useViewportSize } from '@mantine/hooks';
 import PanierVide from '../../../Component/Panier/PanierVide';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { InfoLivraison } from '../../../Reducer/livraisonReducer';
 import { useAuth } from '../../../Hooks/auth';
 import { useSnackbar } from 'notistack';
+import Header from '../../../Component/Header';
+import { Carousel } from '@mantine/carousel';
+import CardVente from '../../../Component/TopVente/CardVente';
+import { useEffect } from 'react';
+import useData from '../../../Hooks/data';
 
 
 const index = () => {
 
      const { isEmpty ,cartTotal, items } = useCart();
+     const [monted, setMonted] = useState(false)
+     const { produits } = useData()
+     const { livraison } = useSelector((item) => item.livraison);
      const { user } = useAuth()
      const dispatch = useDispatch()
      const [adresse, setAdresse] = useState()
@@ -27,6 +36,11 @@ const index = () => {
      const villeRef = useRef()
      const [value, setValue] = useState('react')
      const { enqueueSnackbar } = useSnackbar();
+     const { width } = useViewportSize();
+
+     useEffect(() => {
+          setMonted(true)
+     }, [])
 
      const DataInfoLivraison = (e) => {
 
@@ -48,9 +62,11 @@ const index = () => {
           }
      }
 
+     
+
      return (
           <>
-          <Nav titre='Votre panier'/>
+               <Header />
 
           {
                isEmpty ? <PanierVide /> :
@@ -105,10 +121,10 @@ const index = () => {
                                    <div className='formulaire'>
                                         <form action="" method='post' onSubmit={DataInfoLivraison}>
                                              <div className='form'>
-                                                    <InputBase label="Votre numero de telephone" required ref={numeroRef} placeholder='Entrer votre numero ici' component={IMaskInput} mask="+226 00 00 00 00 00" />
+                                                    <InputBase label="Votre numero de telephone" defaultValue={monted && livraison.numero} required ref={numeroRef} placeholder='Entrer votre numero ici' component={IMaskInput} mask="+226 00 00 00 00 00" />
                                              </div>
                                              <div>
-                                                  <InputBase ref={villeRef} label="Veillez selectionner votre ville" required component="select" mt="md">
+                                                  <InputBase ref={villeRef} defaultValue={monted && livraison.ville} label="Veillez selectionner votre ville" required component="select" mt="md">
                                                        <option value="Ouagadougou">Ouagadougou</option>
                                                        <option value="Bobo-Dioulasso">Bobo-Dioulasso</option>
                                                   </InputBase>
@@ -119,6 +135,7 @@ const index = () => {
                                                        label="Entrer votre adresse de livraison"
                                                        autosize
                                                        m="0.5em 0"
+                                                       defaultValue={monted && livraison.adresse}
                                                        value={adresse} onChange={(event) => setAdresse(event.currentTarget.value)}
                                                        minRows={2}
                                                   />
@@ -150,6 +167,31 @@ const index = () => {
                                                   <button>Commander</button>
                                              </div>
                                         </form>
+                                   </div>
+                              </div>
+                              <div className='elements_interessant'>
+                                   <div className='titre'>
+                                        <p>Des produits qui peuvent vous intéresser</p>
+                                   </div>
+                                   <div className='slider_prod'>                                       
+                                        <Carousel
+                                             slideSize="23%"
+                                             slideGap="md"
+                                             loop
+                                             align="start"
+                                             breakpoints={[
+                                                  { maxWidth: 'md', slideSize: '50%' },
+                                                  { maxWidth: 'sm', slideSize: '50%', slideGap: 8 },
+                                             ]}
+                                             >
+                                                  {
+                                                       monted && produits?.map((produit, index) => (
+                                                            <Carousel.Slide key={index}>
+                                                                 <CardVente produit={produit} key={index}/>
+                                                            </Carousel.Slide>
+                                                       ))
+                                                  }
+                                        </Carousel>
                                    </div>
                               </div>
                          </div>

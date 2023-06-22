@@ -1,5 +1,6 @@
 .categorie_cards_slider {
-     margin: 1em 0;
+     margin: 0.5em 0;
+     padding-top: 5.4em;
 }
 
 .categorie_cards_slider .card_slider {
@@ -26,6 +27,9 @@
 
 @media screen and (min-width: 1200px) {
 
+     .categorie_cards_slider {
+          padding-top: 4.5em;
+     }
      .categorie_cards_slider .card_slider .icone_categorie {
           height: 9vh;
           width: 30%;

@@ -1,0 +1,60 @@
+.page_profil {
+     background: #f6f6f6;
+     padding-top: 4.2em;
+     min-height: 100vh;
+}
+.page_profil .head_profil {
+     height: 30vh;
+     background: #930207;
+     /* opacity: 0.7; */
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+.page_profil .head_profil .image_profil {
+     width: 23%;
+     height: 10.5vh;
+     overflow: hidden;
+}
+.page_profil .head_profil .image_profil .image {
+     height: 100%;
+     width: 100%;
+     border-radius: 50px;
+     object-fit: cover;
+     border: 5px solid white;
+}
+.page_profil .head_profil .info_user {
+     color: white;
+}
+.page_profil .head_profil .info_user h3 {
+     margin: 0.5em 0;
+}
+.page_profil .main_profil .contenu_profil {
+     background: white;
+     padding: 1em;
+     margin: 1em;
+     border-radius: 10px;
+}
+
+.page_profil .main_profil .indication {
+     font-weight: bold;
+     margin: 1em;
+}
+.page_profil .main_profil .contenu_profil .card_contenu {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     text-decoration: none;
+     height: 7vh;
+     color: black
+}
+.page_profil .main_profil .contenu_profil .card_contenu .icone {
+     font-size: 1.6em;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+.page_profil .main_profil .contenu_profil .card_contenu .element {
+     width: 88%;
+}

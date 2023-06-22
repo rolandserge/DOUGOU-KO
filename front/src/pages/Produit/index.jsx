@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import ProductCard from '../../../Component/Produit/ProductCard';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
-import { ProduitCategories } from '../../../Reducer/produitReducer';
+import { useViewportSize } from '@mantine/hooks';
 import Nav from '../../../Layouts/Nav';
 import useData from '../../../Hooks/data';
 import axios from 'axios';
 import Loading from '../../../Component/Loading';
+import Header from '../../../Component/Header';
 
 const index = ({produits}) => {
 
@@ -18,39 +18,38 @@ const index = ({produits}) => {
      const [check, setCheck ] = useState(true)
      const [data, setData] = useState([])
      const router = useRouter()
-     const dispatch = useDispatch()
      const { categorie } = router.query
+     const { width } = useViewportSize();
 
      const FilterCategorie = (categorie) => {
 
-          dispatch(ProduitCategories(categorie))
           setActive(categorie)
           setCheck(false)
-          if(categorie == "tous") {
+          if(categorie == 1) {
                setData(produits)
           } else {
-               const filter = produits.filter((x) => x.categorie.name === categorie)
+               const filter = produits.filter((x) => x.categorie.id == categorie)
                setData(filter)
           }
      }
 
      const FilterData = () => {
 
-          if(categorie == 1) {
+          if(categorie === "tous") {
 
               return produits
 
           } else {
   
-              return produits.filter((x) => x.categorie.id == categorie)
+              return produits.filter((x) => x.categorie.name === categorie)
           }
       }
       
-     const ChangeClasse = (index) => {
+     const ChangeClasse = (index, nom) => {
 
           if(index == active) {
                return "active"
-          } else if (categorie == index && check) {
+          } else if (categorie === nom && check) {
                return "active"
           } 
           else {
@@ -63,7 +62,9 @@ const index = ({produits}) => {
      }
      return (
           <>
-          <Nav titre="Listes des produits" retour="/"/>
+
+               <Header />
+               
           <section className='produits_pages'>
                <div className="accroche">
                     <div className="fond">
@@ -97,13 +98,13 @@ const index = ({produits}) => {
                          }}
                     >
                           <SwiperSlide>
-                              <button className={ChangeClasse(1)} onClick={() => FilterCategorie(1)}>{'Tous'}</button>
+                              <button className={ChangeClasse(1, 'tous')} onClick={() => FilterCategorie(1)}>{'Tous'}</button>
                          </SwiperSlide>
                          {
                               categories?.map((categorie, index) =>
                                    (
                                         <SwiperSlide key={index}>
-                                             <button className={ChangeClasse(categorie.id)} onClick={() => FilterCategorie(categorie.id)}>{categorie.name}</button>
+                                             <button className={ChangeClasse(categorie.id, categorie.name)} onClick={() => FilterCategorie(categorie.id)}>{categorie.name}</button>
                                         </SwiperSlide>
                                    )
                               )
